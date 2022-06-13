@@ -10,7 +10,7 @@ interface IState {
   isCurrent: boolean;
 }
 
-export default class Row extends Component<IProps, IState> {
+class Row extends Component<IProps, IState> {
   constructor(props) {
     super(props);
     this.state = {
@@ -31,3 +31,5 @@ export default class Row extends Component<IProps, IState> {
     );
   }
 }
+
+export default Row;

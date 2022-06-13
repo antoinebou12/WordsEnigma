@@ -1,19 +1,19 @@
 import { Link, routes } from '@redwoodjs/router';
-import { MetaTags, } from '@redwoodjs/web';
-import { Header } from './components/Header';
-import { Rules } from './components/Rules';
-import { Keyboard } from './components/Keyboard';
-import './MotduJourPage.css'
+import { MetaTags } from '@redwoodjs/web';
 
-const MotdujourPage = () => {
+import Header from './subcomponents/Header/Header';
+import Rules from "./subcomponents/Rules/Rules"
+import Keyboard from './subcomponents/Keyboard/Keyboard';
+
+const MotduJourPage = () => {
   return (
     <>
       <MetaTags title="Mot du Jour !" description="Mot du Jour !" />
-      <Header />
+      <Header title='Mot du Jour !' />
       <Rules />
       <Keyboard />
     </>
   )
 }
 
-export default MotdujourPage;
+export default MotduJourPage;

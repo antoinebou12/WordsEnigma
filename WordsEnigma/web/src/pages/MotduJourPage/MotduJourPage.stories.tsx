@@ -1,7 +1,7 @@
-import MotdujourPage from './MotduJourPage'
+import MotduJourPage from './MotduJourPage'
 
 export const generated = () => {
-  return <MotdujourPage />
+  return <MotduJourPage />
 }
 
 export default { title: 'Pages/MotdujourPage' }

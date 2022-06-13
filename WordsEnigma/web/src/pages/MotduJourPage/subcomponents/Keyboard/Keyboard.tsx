@@ -8,8 +8,7 @@ interface IProps {
 interface IState {
 }
 
-
-export default class Keyboard extends Component<IProps, IState> {
+class Keyboard extends Component<IProps, IState> {
   constructor(props) {
     super(props);
     this.onClick = this.onClick.bind(this);
@@ -37,13 +36,13 @@ export default class Keyboard extends Component<IProps, IState> {
         <div className="line">
           <div className="letter" id="letterA">A</div>
           <div className="letter" id="letterS">S</div>
-          <div className="lettre" id="letterD">D</div>
-          <div className="lettre" id="letterF">F</div>
-          <div className="lettre" id="letterG">G</div>
-          <div className="lettre" id="letterH">H</div>
-          <div className="lettre" id="letterJ">J</div>
-          <div className="lettre" id="letterK">K</div>
-          <div className="lettre" id="letterL">L</div>
+          <div className="letter" id="letterD">D</div>
+          <div className="letter" id="letterF">F</div>
+          <div className="letter" id="letterG">G</div>
+          <div className="letter" id="letterH">H</div>
+          <div className="letter" id="letterJ">J</div>
+          <div className="letter" id="letterK">K</div>
+          <div className="letter" id="letterL">L</div>
         </div>
         <div className="line">
           <div className="deviner doubleSpace">Jouer</div>
@@ -53,7 +52,7 @@ export default class Keyboard extends Component<IProps, IState> {
           <div className="letter" id="letterV">V</div>
           <div className="letter" id="letterB">B</div>
           <div className="letter" id="letterN">N</div>
-          <div className="lettre" id="letterM">M</div>
+          <div className="letter" id="letterM">M</div>
           <div className="suprm doubleSpace">Del.</div>
         </div>
       </div>
@@ -61,3 +60,5 @@ export default class Keyboard extends Component<IProps, IState> {
   }
 }
 
+
+export default Keyboard;

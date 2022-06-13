@@ -9,7 +9,7 @@ interface IState {
 }
 
 
-export default class Rules extends Component<IProps, IState> {
+class Rules extends Component<IProps, IState> {
   constructor(props) {
     super(props);
   }
@@ -24,6 +24,8 @@ export default class Rules extends Component<IProps, IState> {
         <div> Parfait! </div>
       </div>
     );
+  }
 }
-}
+
+export default Rules;
 
