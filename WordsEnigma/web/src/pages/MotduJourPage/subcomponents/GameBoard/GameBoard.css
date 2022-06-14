@@ -1,10 +1,16 @@
+.GameBoard {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
 .row {
   display: flex;
   align-items: center;
   justify-content: center;
 }
 
-.letterBox {
+.cell{
   background-color: rgb(129, 129, 129);
   text-align: center;
   font-weight: 1000;
@@ -12,7 +18,7 @@
 }
 
 @media only screen and (min-width:1000px) {
-  .letterBox {
+  .cell {
     height: 60px;
     width: 90px;
     line-height: 60px;
@@ -22,7 +28,7 @@
 }
 
 @media only screen and (max-width:1000px) {
-  .letterBox {
+  .cell {
     height: 7vh;
     width: 15vw;
     line-height: 7vh;
@@ -31,5 +37,5 @@
     margin-bottom: 0.5vw;
     margin-left: 0.3vh;
     margin-right: 0.3vh;
-}
+  }
 }

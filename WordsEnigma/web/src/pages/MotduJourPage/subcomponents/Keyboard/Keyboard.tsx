@@ -6,6 +6,7 @@ interface IProps {
 }
 
 interface IState {
+
 }
 
 class Keyboard extends Component<IProps, IState> {
@@ -16,6 +17,14 @@ class Keyboard extends Component<IProps, IState> {
 
   onClick(e) {
     console.log(e.target.id);
+  }
+
+  componentDidMount() {
+    console.log('Keyboard mounted');
+  }
+
+  componentWillUnmount() {
+    console.log('Keyboard unmounted');
   }
 
   render() {
@@ -53,7 +62,7 @@ class Keyboard extends Component<IProps, IState> {
           <div className="letter" id="letterB">B</div>
           <div className="letter" id="letterN">N</div>
           <div className="letter" id="letterM">M</div>
-          <div className="suprm doubleSpace">Del.</div>
+          <div className="suprm doubleSpace">Del</div>
         </div>
       </div>
     );
