@@ -34,6 +34,20 @@ class GameBoard extends Component<IProps, IState> {
     };
   }
 
+  eventBus() {
+    eventBus.on('keyPress', (key) => {
+      console.log(key);
+      if (key == "Del") {
+        this.supprimer();
+      } else if (key == "Enter") {
+        this.jouer();
+      } else {
+        this.writeLetter(key);
+      }
+    }
+    );
+  }
+
   componentDidMount() {
     var banqueDeMots = this.getBanqueDeMots();
     var grandeBanqueMots = this.getGrandeBanqueMots();
@@ -42,6 +56,11 @@ class GameBoard extends Component<IProps, IState> {
       grandeBanqueMots: grandeBanqueMots,
       motDuJour: this.choixMotDuJour(banqueDeMots)
     });
+    this.eventBus();
+  }
+
+  componentWillUnmount() {
+    eventBus.remove('keyPress', () => { });
   }
 
   getBanqueDeMots() {
@@ -250,62 +269,62 @@ class GameBoard extends Component<IProps, IState> {
     }
   }
 
-  ecrireLettre(lettre) {
-  if (!this.state.gagner) {
+  writeLetter(letter) {
+    if (!this.state.gagner) {
 
-    var rangActif = document.querySelector(".actif");
-    var compteur = 0;
-    var placer = false;
-    while (!placer && compteur < 5) {
-      if (!rangActif.children[compteur].classList.contains("rempli")) {
-        placer = true;
-        rangActif.children[compteur].classList.add("rempli");
-        rangActif.children[compteur].innerHTML = lettre.toUpperCase();
+      var rangActif = document.querySelector(".actif");
+      var compteur = 0;
+      var placer = false;
+      while (!placer && compteur < 5) {
+        if (!rangActif.children[compteur].classList.contains("rempli")) {
+          placer = true;
+          rangActif.children[compteur].classList.add("rempli");
+          rangActif.children[compteur].innerHTML = letter.toUpperCase();
+        }
+        compteur++;
       }
-      compteur++;
     }
   }
-}
 
-renderGrid() {
-  const { cols, rows } = this.props;
-  const grid = [];
-  for (let i = 0; i < rows; i++) {
-    grid.push(
-      <div className="row" key={i}>
-        {this.renderRow(i, cols)}
+  renderGrid() {
+    const { cols, rows } = this.props;
+    const grid = [];
+    for (let i = 0; i < rows; i++) {
+      grid.push(
+        <div className="row" key={i}>
+          {this.renderRow(i, cols)}
+        </div>
+      );
+    }
+    return grid;
+  }
+
+  renderRow(row, cols) {
+    const rowGrid = [];
+    for (let i = 0; i < cols; i++) {
+      rowGrid.push(
+        <div className="col" key={i}>
+          {this.renderCell(row, i)}
+        </div>
+      );
+    }
+    return rowGrid;
+  }
+
+  renderCell(row, col) {
+    return <div className="cell"></div>;
+  }
+
+
+  render() {
+    return (
+      <div className="gameBoard">
+        <div className="gameBoard__grid">
+          {this.renderGrid()}
+        </div>
       </div>
     );
   }
-  return grid;
-}
-
-renderRow(row, cols) {
-  const rowGrid = [];
-  for (let i = 0; i < cols; i++) {
-    rowGrid.push(
-      <div className="col" key={i}>
-        {this.renderCell(row, i)}
-      </div>
-    );
-  }
-  return rowGrid;
-}
-
-renderCell(row, col) {
-  return <div className="cell"></div>;
-}
-
-
-render() {
-  return (
-    <div className="gameBoard">
-      <div className="gameBoard__grid">
-        {this.renderGrid()}
-      </div>
-    </div>
-  );
-}
 }
 
 export default GameBoard;

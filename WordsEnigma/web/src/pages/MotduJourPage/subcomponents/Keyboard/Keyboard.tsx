@@ -22,6 +22,11 @@ class Keyboard extends Component<IProps, IState> {
 
   componentDidUpdate() {
     console.log('componentDidUpdate');
+
+    document.addEventListener('keydown', function (event) {
+      console.log(event.key);
+      eventBus.dispatch("keyPress", { message: event.key });
+    });
   }
 
   componentDidMount() {
@@ -31,6 +36,7 @@ class Keyboard extends Component<IProps, IState> {
   componentWillUnmount() {
     console.log('Keyboard unmounted');
   }
+
 
   render() {
     return (
