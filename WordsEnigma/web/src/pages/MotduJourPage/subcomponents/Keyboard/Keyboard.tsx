@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import eventBus from '../../EventBus/EventBus';
 import './Keyboard.css';
 
 
@@ -16,6 +17,7 @@ class Keyboard extends Component<IProps, IState> {
 
   onClick(e) {
     console.log(e.target.innerText);
+    eventBus.dispatch("keyPress", { message: e.target.innerText });
   }
 
   componentDidUpdate() {
