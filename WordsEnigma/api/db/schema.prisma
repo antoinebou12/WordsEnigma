@@ -9,13 +9,108 @@ generator client {
 }
 
 model User {
-        id                  Int @id @default(autoincrement())
-        name                String?
-        email               String  @unique
-        hashedPassword      String    // <─┐
-        salt                String    // <─┼─ add these lines
-        resetToken          String?   // <─┤
-        resetTokenExpiresAt DateTime? // <─┘
-      }
+  id                  Int            @id @default(autoincrement())
+  name                String?
+  email               String         @unique
+  hashedPassword      String // <─┐
+  salt                String // <─┼─ add these lines
+  resetToken          String? // <─┤
+  resetTokenExpiresAt DateTime? // <─┘
+  UserSettings        UserSettings[]
+  Game                Game[]
+  Statistics          Statistics[]
+}
 
+model UserSettings {
+  id        Int      @id @default(autoincrement())
+  userId    Int      @unique
+  user      User     @relation(fields: [userId], references: [id])
+  language  String
+  createdAt DateTime
+}
 
+model Language {
+  id        Int         @id @default(autoincrement())
+  name      String
+  code      String
+  words     Word[]
+  wordsBank WordsBank[]
+  Game      Game[]
+  createdAt DateTime
+}
+
+model Word {
+  id          Int        @id @default(autoincrement())
+  word        String
+  definition  String?
+  example     String?
+  language    Language   @relation(fields: [languageId], references: [id])
+  languageId  Int        @unique
+  createdAt   DateTime
+  WordsBank   WordsBank? @relation(fields: [wordsBankId], references: [id])
+  wordsBankId Int?
+  Game        Game[]
+}
+
+model WordsBank {
+  id         Int      @id @default(autoincrement())
+  words      Word[]
+  language   Language @relation(fields: [languageId], references: [id])
+  languageId Int      @unique
+  source     String
+  Game       Game[]
+}
+
+model Game {
+  id           Int         @id @default(autoincrement())
+  name        String
+  user         User        @relation(fields: [userId], references: [id])
+  userId       Int         @unique
+  word         Word        @relation(fields: [wordId], references: [id])
+  wordId       Int         @unique
+  wordsBank    WordsBank   @relation(fields: [wordsBankId], references: [id])
+  wordsBankId  Int         @unique
+  tries        Int         @default(0)
+  startedAt    DateTime
+  finishedAt   DateTime?
+  correct      Boolean
+  createdAt    DateTime
+  Language     Language?   @relation(fields: [languageId], references: [id])
+  languageId   Int?
+  TryRow       TryRow[]
+  Statistics   Statistics? @relation(fields: [statisticsId], references: [id])
+  statisticsId Int?
+}
+
+model Letter {
+  id        Int      @id @default(autoincrement())
+  letter    String
+  tryRow    TryRow   @relation(fields: [tryRowId], references: [id])
+  tryRowId  Int      @unique
+  createdAt DateTime
+}
+
+model TryRow {
+  id        Int      @id @default(autoincrement())
+  gameId    Int      @unique
+  game      Game     @relation(fields: [gameId], references: [id])
+  tries     Int      @default(0)
+  rowSize  Int      @default(0)
+  correct   Boolean
+  letters   Letter[]
+  letterId  Int      @unique
+  createdAt DateTime
+}
+
+model Statistics {
+  id         Int    @id @default(autoincrement())
+  userId     Int    @unique
+  user       User   @relation(fields: [userId], references: [id])
+  games      Game[] 
+  gamePlayed Int    @default(0)
+  gameWon    Int    @default(0)
+  gameLost   Int    @default(0)
+  streak     Int    @default(0)
+  average    Int    @default(0)
+  createdAt DateTime
+}
