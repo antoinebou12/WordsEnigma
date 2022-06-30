@@ -10,33 +10,42 @@ generator client {
 
 model User {
   id                  Int            @id @default(autoincrement())
+  username            String         @unique
   name                String?
   email               String         @unique
-  hashedPassword      String // <─┐
-  salt                String // <─┼─ add these lines
-  resetToken          String? // <─┤
-  resetTokenExpiresAt DateTime? // <─┘
+  hashedPassword      String 
+  salt                String 
+  resetToken          String? 
+  resetTokenExpiresAt DateTime? 
   UserSettings        UserSettings[]
   Game                Game[]
   Statistics          Statistics[]
+  createdAt           DateTime       @default(now())
+  updatedAt           DateTime       @updatedAt
+
 }
 
 model UserSettings {
-  id        Int      @id @default(autoincrement())
-  userId    Int      @unique
-  user      User     @relation(fields: [userId], references: [id])
-  language  String
-  createdAt DateTime
+  id         Int      @id @default(autoincrement())
+  bio        String?
+  userId     Int      @unique
+  user       User     @relation(fields: [userId], references: [id])
+  language   Language @relation(fields: [languageId], references: [id])
+  languageId Int
+  createdAt           DateTime       @default(now())
+  updatedAt           DateTime       @updatedAt
 }
 
 model Language {
-  id        Int         @id @default(autoincrement())
-  name      String
-  code      String
-  words     Word[]
-  wordsBank WordsBank[]
-  Game      Game[]
-  createdAt DateTime
+  id           Int            @id @default(autoincrement())
+  name         String
+  code         String
+  words        Word[]
+  wordsBank    WordsBank[]
+  Game         Game[]
+  UserSettings UserSettings[]
+  createdAt           DateTime       @default(now())
+  updatedAt           DateTime       @updatedAt
 }
 
 model Word {
@@ -44,73 +53,82 @@ model Word {
   word        String
   definition  String?
   example     String?
+  size        Int
+  source      String?
   language    Language   @relation(fields: [languageId], references: [id])
-  languageId  Int        @unique
-  createdAt   DateTime
+  languageId  Int
   WordsBank   WordsBank? @relation(fields: [wordsBankId], references: [id])
   wordsBankId Int?
   Game        Game[]
+  createdAt           DateTime       @default(now())
+  updatedAt           DateTime       @updatedAt
 }
 
 model WordsBank {
   id         Int      @id @default(autoincrement())
   words      Word[]
   language   Language @relation(fields: [languageId], references: [id])
-  languageId Int      @unique
-  source     String
+  languageId Int
+  source     String?
   Game       Game[]
+  createdAt           DateTime       @default(now())
+  updatedAt           DateTime       @updatedAt
 }
 
 model Game {
   id           Int         @id @default(autoincrement())
-  name        String
-  user         User        @relation(fields: [userId], references: [id])
-  userId       Int         @unique
-  word         Word        @relation(fields: [wordId], references: [id])
-  wordId       Int         @unique
-  wordsBank    WordsBank   @relation(fields: [wordsBankId], references: [id])
-  wordsBankId  Int         @unique
+  name         String
   tries        Int         @default(0)
   startedAt    DateTime
   finishedAt   DateTime?
   correct      Boolean
-  createdAt    DateTime
+  user         User        @relation(fields: [userId], references: [id])
+  userId       Int
+  word         Word        @relation(fields: [wordId], references: [id])
+  wordId       Int
+  wordsBank    WordsBank   @relation(fields: [wordsBankId], references: [id])
+  wordsBankId  Int
   Language     Language?   @relation(fields: [languageId], references: [id])
   languageId   Int?
   TryRow       TryRow[]
   Statistics   Statistics? @relation(fields: [statisticsId], references: [id])
   statisticsId Int?
+  createdAt           DateTime       @default(now())
+  updatedAt           DateTime       @updatedAt
 }
 
 model Letter {
-  id        Int      @id @default(autoincrement())
-  letter    String
-  tryRow    TryRow   @relation(fields: [tryRowId], references: [id])
-  tryRowId  Int      @unique
-  createdAt DateTime
+  id         Int      @id @default(autoincrement())
+  letter     String
+  tryRow     TryRow   @relation(fields: [tryRowId], references: [id])
+  tryRowId   Int
+  createdAt  DateTime
+  modifiedAt DateTime
 }
 
 model TryRow {
-  id        Int      @id @default(autoincrement())
-  gameId    Int      @unique
-  game      Game     @relation(fields: [gameId], references: [id])
-  tries     Int      @default(0)
-  rowSize  Int      @default(0)
-  correct   Boolean
-  letters   Letter[]
-  letterId  Int      @unique
-  createdAt DateTime
+  id         Int      @id @default(autoincrement())
+  gameId     Int
+  game       Game     @relation(fields: [gameId], references: [id])
+  tries      Int      @default(0)
+  rowSize    Int      @default(0)
+  correct    Boolean
+  letters    Letter[]
+  letterId   Int
+  createdAt           DateTime       @default(now())
+  updatedAt           DateTime       @updatedAt
 }
 
 model Statistics {
-  id         Int    @id @default(autoincrement())
-  userId     Int    @unique
-  user       User   @relation(fields: [userId], references: [id])
-  games      Game[] 
-  gamePlayed Int    @default(0)
-  gameWon    Int    @default(0)
-  gameLost   Int    @default(0)
-  streak     Int    @default(0)
-  average    Int    @default(0)
-  createdAt DateTime
+  id         Int      @id @default(autoincrement())
+  gamePlayed Int      @default(0)
+  gameWon    Int      @default(0)
+  gameLost   Int      @default(0)
+  streak     Int      @default(0)
+  average    Int      @default(0)
+  user       User     @relation(fields: [userId], references: [id])
+  userId     Int      @unique
+  Game       Game[]
+  createdAt           DateTime       @default(now())
+  updatedAt           DateTime       @updatedAt
 }
