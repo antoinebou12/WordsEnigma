@@ -8,6 +8,7 @@
     ]
   },
   "devDependencies": {
+    "@getbigger-io/prisma-fixtures-cli": "^1.0.10",
     "@redwoodjs/core": "1.5.2"
   },
   "eslintConfig": {
@@ -22,5 +23,9 @@
     "schema": "./api/db/schema.prisma",
     "seed": "yarn rw exec seed"
   },
-  "packageManager": "yarn@3.2.1"
+  "packageManager": "yarn@3.2.1",
+  "dependencies": {
+    "axios": "^0.27.2",
+    "cheerio": "^1.0.0-rc.12"
+  }
 }

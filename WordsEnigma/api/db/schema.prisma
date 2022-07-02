@@ -10,43 +10,115 @@ generator client {
 
 model User {
   id                  Int            @id @default(autoincrement())
+  username            String         @unique
   name                String?
   email               String         @unique
-  hashedPassword      String // <─┐
-  salt                String // <─┼─ add these lines
-  resetToken          String? // <─┤
-  resetTokenExpiresAt DateTime? // <─┘
+  hashedPassword      String
+  salt                String
+  resetToken          String?
+  resetTokenExpiresAt DateTime?
   UserSettings        UserSettings[]
-  Word                Word[]
   Game                Game[]
+  Statistics          Statistics[]
+  createdAt           DateTime       @default(now())
+  updatedAt           DateTime       @updatedAt
+
 }
 
 model UserSettings {
   id        Int      @id @default(autoincrement())
+  bio       String?
   user      User     @relation(fields: [id], references: [id])
-  language  String
-  createdAt DateTime
+  language  Language @relation(fields: [id], references: [id])
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+model Language {
+  id           Int            @id @default(autoincrement())
+  name         String
+  code         String         @unique
+  UserSettings UserSettings[]
+  Word         Word[]
+  WordBank     WordBank[]
+  createdAt    DateTime       @default(now())
+  updatedAt    DateTime       @updatedAt
 }
 
 model Word {
-  id         Int     @id @default(autoincrement())
-  word       String
+  id         Int        @id @default(autoincrement())
+  word       String     @unique
   definition String?
   example    String?
-  User       User?   @relation(fields: [userId], references: [id])
-  userId     Int?
+  synonym    String?
+  size       Int
+  source     String?
+  language   Language   @relation(fields: [languageId], references: [id])
+  languageId Int
+  wordBanks  WordBank[]
   Game       Game[]
+  createdAt  DateTime   @default(now())
+  updatedAt  DateTime   @updatedAt
 }
 
-model WordsBank {
-  id Int @id @default(autoincrement())
+model WordBank {
+  id        Int      @id @default(autoincrement())
+  name      String   @unique
+  words     Word[]
+  language   Language   @relation(fields: [languageId], references: [id])
+  languageId Int
+  source    String?
+  Game      Game[]
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
 }
 
 model Game {
+  id         Int         @id @default(autoincrement())
+  name       String
+  tries      Int         @default(0)
+  startedAt  DateTime
+  finishedAt DateTime?
+  correct    Boolean
+  duration   Int
+  user       User        @relation(fields: [id], references: [id])
+  word       Word        @relation(fields: [id], references: [id])
+  wordsBank  WordBank    @relation(fields: [id], references: [id])
+  TryRow     TryRow[]
+  Statistics Statistics? @relation(fields: [id], references: [id])
+  createdAt  DateTime    @default(now())
+  updatedAt  DateTime    @updatedAt
+}
+
+model Letter {
+  id         Int      @id @default(autoincrement())
+  letter     String
+  tryRow     TryRow   @relation(fields: [id], references: [id])
+  tryRowId   Int
+  createdAt  DateTime
+  modifiedAt DateTime
+}
+
+model TryRow {
   id        Int      @id @default(autoincrement())
-  user      User     @relation(fields: [id], references: [id])
-  word      Word     @relation(fields: [id], references: [id])
+  game      Game     @relation(fields: [id], references: [id])
   tries     Int      @default(0)
+  rowSize   Int      @default(0)
   correct   Boolean
-  createdAt DateTime
+  letters   Letter[]
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+model Statistics {
+  id         Int      @id @default(autoincrement())
+  gamePlayed Int      @default(0)
+  gameWon    Int      @default(0)
+  gameLost   Int      @default(0)
+  streak     Int      @default(0)
+  average    Int      @default(0)
+  user       User     @relation(fields: [id], references: [id])
+  Game       Game[]
+  createdAt  DateTime @default(now())
+  updatedAt  DateTime @updatedAt
 }
