@@ -20,6 +20,7 @@
     "yarn": ">=1.15"
   },
   "prisma": {
+    "schema": "./api/db/schema.prisma",
     "seed": "yarn rw exec seed"
   },
   "packageManager": "yarn@3.2.1",
