@@ -3,17 +3,24 @@ import { Logger } from 'pino';
 
 export async function addLanguages(prisma: PrismaClient, logger: Logger) {
     for (const language of Languages) {
-        await prisma.language.create({
-            data: {
-                ...language,
-            },
-        })
+        await prisma.language.upsert(
+            {
+                where: {
+                    code: language.code,
+                },
+                update: {},
+                create: {
+                    name: language.name,
+                    code: language.code,
+                }
+            });
         logger.debug({ data: language }, 'Added language')
     }
 }
 
-const Languages = [
+export const Languages = [
     {
+        id: 1,
         name: 'English',
         code: 'en',
     },
