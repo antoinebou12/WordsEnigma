@@ -26,12 +26,14 @@ model User {
 }
 
 model UserSettings {
-  id        Int      @id @default(autoincrement())
-  bio       String?
-  user      User     @relation(fields: [id], references: [id])
-  language  Language @relation(fields: [id], references: [id])
-  createdAt DateTime @default(now())
-  updatedAt DateTime @updatedAt
+  id         Int      @id @default(autoincrement())
+  bio        String?
+  user       User     @relation(fields: [userId], references: [id])
+  userId     Int
+  language   Language @relation(fields: [languageId], references: [id])
+  languageId Int
+  createdAt  DateTime @default(now())
+  updatedAt  DateTime @updatedAt
 }
 
 model Language {
@@ -62,15 +64,15 @@ model Word {
 }
 
 model WordBank {
-  id        Int      @id @default(autoincrement())
-  name      String   @unique
-  words     Word[]
-  language   Language   @relation(fields: [languageId], references: [id])
+  id         Int      @id @default(autoincrement())
+  name       String   @unique
+  words      Word[]
+  language   Language @relation(fields: [languageId], references: [id])
   languageId Int
-  source    String?
-  Game      Game[]
-  createdAt DateTime @default(now())
-  updatedAt DateTime @updatedAt
+  source     String?
+  Game       Game[]
+  createdAt  DateTime @default(now())
+  updatedAt  DateTime @updatedAt
 }
 
 model Game {
@@ -81,11 +83,15 @@ model Game {
   finishedAt DateTime?
   correct    Boolean
   duration   Int
-  user       User        @relation(fields: [id], references: [id])
-  word       Word        @relation(fields: [id], references: [id])
-  wordsBank  WordBank    @relation(fields: [id], references: [id])
-  TryRow     TryRow[]
-  Statistics Statistics? @relation(fields: [id], references: [id])
+  user       User        @relation(fields: [userId], references: [id])
+  userId     Int
+  word       Word        @relation(fields: [wordId], references: [id])
+  wordId     Int
+  wordsBank  WordBank    @relation(fields: [wordsBankId], references: [id])
+  wordsBankId Int
+  tryRows     TryRow[]
+  statistics Statistics? @relation(fields: [statisticsId], references: [id])
+  statisticsId Int
   createdAt  DateTime    @default(now())
   updatedAt  DateTime    @updatedAt
 }
@@ -93,7 +99,7 @@ model Game {
 model Letter {
   id         Int      @id @default(autoincrement())
   letter     String
-  tryRow     TryRow   @relation(fields: [id], references: [id])
+  tryRow     TryRow   @relation(fields: [tryRowId], references: [id])
   tryRowId   Int
   createdAt  DateTime
   modifiedAt DateTime
@@ -101,7 +107,8 @@ model Letter {
 
 model TryRow {
   id        Int      @id @default(autoincrement())
-  game      Game     @relation(fields: [id], references: [id])
+  game      Game     @relation(fields: [gameId], references: [id])
+  gameId    Int
   tries     Int      @default(0)
   rowSize   Int      @default(0)
   correct   Boolean
