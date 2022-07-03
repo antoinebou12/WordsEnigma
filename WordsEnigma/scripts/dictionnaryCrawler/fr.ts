@@ -7,16 +7,16 @@ export const urlWiktionary = "https://fr.wiktionary.org/wiki/";
 
 async function fetchData(url: string): Promise<any> {
     // make http call to url
-    let response: void | AxiosResponse<any, any> = await axios(url, {timeout:50000, httpsAgent: new https.Agent({ keepAlive: true })}).catch((err) => console.log(err));
+    let response: void | AxiosResponse<any, any> = await axios(url, {timeout:50000, httpsAgent: new https.Agent({ keepAlive: true })}).catch((err) => console.log("Error occurred while fetching data " + url));
     if (response) {
         // console.log(`${url} fetched`);
         let status: number = response?.status;
         if (status !== 200) {
-            console.log("Error occurred while fetching data");
+            console.log("Error occurred while fetching data: " + url );
             return;
         }
     } else {
-        console.log("Error occurred while fetching data");
+        console.log("Error occurred while fetching data " + url);
         return;
     }
     return response;
@@ -36,11 +36,11 @@ async function getDefitionFromWiktionary(word: String) {
                 }
                 return definition;
             } else {
-                console.log("Error occurred while fetching data");
+                console.log("Error occurred while fetching data " + word);
                 return;
             }
         } else {
-            console.log("Error occurred while fetching data");
+            console.log("Error occurred while fetching data " + word);
         }
     });
 }
@@ -63,11 +63,11 @@ async function getDefinitionFromLeDictionnaire(word: String) {
                 }
                 return definition;
             } else {
-                console.log("Error occurred while fetching data");
+                console.log("Error occurred while fetching data " + word);
                 return;
             }
         } else {
-            console.log("Error occurred while fetching data");
+            console.log("Error occurred while fetching data " + word);
         }
     })
 }

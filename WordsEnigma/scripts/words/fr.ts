@@ -7,15 +7,13 @@ const languageCode = 'fr'
 export async function addWords(db: PrismaClient, logger: Logger) {
     for (const word of WordsFR) {
         await getDefinition(languageCode, word).then(def => {
+            let update = {}
+
             db.word.upsert({
                 where: {
                     word: word,
                 },
-                update: {
-                    word: word,
-                    definition: def,
-                    size: word.length,
-                },
+                update: update,
                 create: {
                     word: word,
                     definition: def,
