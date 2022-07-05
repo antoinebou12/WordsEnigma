@@ -5,7 +5,7 @@ import { getDefinition as getDefinitionFR } from './fr';
 
 
 
-export default async function getDefinition(language: string, word: string) {
+export default async function getDefinition(language: string, word: string): Promise<any> {
     const languageMap = {
         'fr': getDefinitionFR(word),
     }

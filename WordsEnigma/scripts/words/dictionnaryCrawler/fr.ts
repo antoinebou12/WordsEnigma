@@ -7,12 +7,12 @@ export const urlWiktionary = "https://fr.wiktionary.org/wiki/";
 
 async function fetchData(url: string): Promise<any> {
     // make http call to url
-    let response: void | AxiosResponse<any, any> = await axios(url, {timeout:50000, httpsAgent: new https.Agent({ keepAlive: true })}).catch((err) => console.log("Error occurred while fetching data " + url));
+    let response: void | AxiosResponse<any, any> = await axios(url, { timeout: 50000, httpsAgent: new https.Agent({ keepAlive: true }) }).catch((err) => console.log("Error occurred while fetching data " + url));
     if (response) {
         // console.log(`${url} fetched`);
         let status: number = response?.status;
         if (status !== 200) {
-            console.log("Error occurred while fetching data: " + url );
+            console.log("Error occurred while fetching data: " + url);
             return;
         }
     } else {
@@ -22,7 +22,7 @@ async function fetchData(url: string): Promise<any> {
     return response;
 }
 
-async function getDefitionFromWiktionary(word: String) {
+async function getDefitionFromWiktionary(word: String): Promise<string> {
     return await fetchData(urlWiktionary + word).then((res) => {
         if (res) {
             let data = res.data;
@@ -45,7 +45,7 @@ async function getDefitionFromWiktionary(word: String) {
     });
 }
 
-async function getDefinitionFromLeDictionnaire(word: String) {
+async function getDefinitionFromLeDictionnaire(word: String): Promise<any> {
     return await fetchData(urlLeDictionnaire + word).then((res) => {
         if (res) {
             let data = res.data;
@@ -61,10 +61,13 @@ async function getDefinitionFromLeDictionnaire(word: String) {
                         definition += def_li_text;
                     }
                 }
-                return definition;
+                return {
+                    definition: definition,
+                    source: urlLeDictionnaire + word
+                };
             } else {
                 console.log("Error occurred while fetching data " + word);
-                return;
+                return { definition: "", source: "" };
             }
         } else {
             console.log("Error occurred while fetching data " + word);
@@ -73,16 +76,25 @@ async function getDefinitionFromLeDictionnaire(word: String) {
 }
 
 
-export async function getDefinition(word: String) {
+export async function getDefinition(word: String): Promise<any> {
     return await getDefinitionFromLeDictionnaire(word).then((res) => {
         if (res) {
-            return res;
+            return {
+                definition: res,
+                source: urlWiktionary + word
+            };
         } else {
             return getDefitionFromWiktionary(word).then((res) => {
                 if (res) {
-                    return res;
+                    return {
+                        definiton: res,
+                        source: urlWiktionary + word
+                    };
                 } else {
-                    return "";
+                    return {
+                        definition: "",
+                        source: ""
+                    };
                 }
             });
         }

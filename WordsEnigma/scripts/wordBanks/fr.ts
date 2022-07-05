@@ -14,8 +14,7 @@ export async function addWordBank(db: PrismaClient, logger: Logger) {
             update: {},
             create: {
                 name: languageCode,
-                source: url,
-                language: {
+                Language: {
                     connect: {
                         code: languageCode,
                     },
