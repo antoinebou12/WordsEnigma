@@ -4,12 +4,15 @@ export const schema = gql`
     word: String!
     definition: String
     example: String
+    synonym: String
+    size: Int!
+    source: String
     language: Language!
     languageId: Int!
-    createdAt: DateTime!
-    WordsBank: WordsBank
-    wordsBankId: Int
+    wordBanks: [WordBank]!
     Game: [Game]!
+    createdAt: DateTime!
+    updatedAt: DateTime!
   }
 
   type Query {
@@ -21,16 +24,20 @@ export const schema = gql`
     word: String!
     definition: String
     example: String
+    synonym: String
+    size: Int!
+    source: String
     languageId: Int!
-    wordsBankId: Int
   }
 
   input UpdateWordInput {
     word: String
     definition: String
     example: String
+    synonym: String
+    size: Int
+    source: String
     languageId: Int
-    wordsBankId: Int
   }
 
   type Mutation {

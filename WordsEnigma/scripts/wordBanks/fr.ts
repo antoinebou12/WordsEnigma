@@ -1,7 +1,7 @@
 import { PrismaClient } from '@prisma/client';
 import { Logger } from 'pino';
 
-import { url } from './../dictionnaryCrawler/fr';
+import { urlLeDictionnaire, urlWiktionary } from './../dictionnaryCrawler/fr';
 
 const languageCode = 'fr'
 

@@ -3,10 +3,11 @@ export const schema = gql`
     id: Int!
     name: String!
     code: String!
-    words: [Word]!
-    wordsBank: [WordsBank]!
-    Game: [Game]!
+    UserSettings: [UserSettings]!
+    Word: [Word]!
+    WordBank: [WordBank]!
     createdAt: DateTime!
+    updatedAt: DateTime!
   }
 
   type Query {

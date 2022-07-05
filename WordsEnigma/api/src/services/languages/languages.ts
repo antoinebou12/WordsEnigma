@@ -40,10 +40,10 @@ export const deleteLanguage: MutationResolvers['deleteLanguage'] = ({ id }) => {
 }
 
 export const Language: LanguageResolvers = {
-  words: (_obj, { root }) =>
-    db.language.findUnique({ where: { id: root.id } }).words(),
-  wordsBank: (_obj, { root }) =>
-    db.language.findUnique({ where: { id: root.id } }).wordsBank(),
-  Game: (_obj, { root }) =>
-    db.language.findUnique({ where: { id: root.id } }).Game(),
+  UserSettings: (_obj, { root }) =>
+    db.language.findUnique({ where: { id: root.id } }).UserSettings(),
+  Word: (_obj, { root }) =>
+    db.language.findUnique({ where: { id: root.id } }).Word(),
+  WordBank: (_obj, { root }) =>
+    db.language.findUnique({ where: { id: root.id } }).WordBank(),
 }
