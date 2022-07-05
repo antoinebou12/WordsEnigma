@@ -24,26 +24,26 @@ describe('games', () => {
     const result = await createGame({
       input: {
         name: 'String',
-        startedAt: '2022-07-05T17:40:14Z',
+        startedAt: '2022-07-05T19:28:06Z',
         correct: true,
-        duration: 4690760,
+        duration: 2292940,
         userId: scenario.game.two.userId,
         wordId: scenario.game.two.wordId,
         wordsBankId: scenario.game.two.wordsBankId,
         statisticsId: scenario.game.two.statisticsId,
-        updatedAt: '2022-07-05T17:40:14Z',
+        updatedAt: '2022-07-05T19:28:06Z',
       },
     })
 
     expect(result.name).toEqual('String')
-    expect(result.startedAt).toEqual('2022-07-05T17:40:14Z')
+    expect(result.startedAt).toEqual('2022-07-05T19:28:06Z')
     expect(result.correct).toEqual(true)
-    expect(result.duration).toEqual(4690760)
+    expect(result.duration).toEqual(2292940)
     expect(result.userId).toEqual(scenario.game.two.userId)
     expect(result.wordId).toEqual(scenario.game.two.wordId)
     expect(result.wordsBankId).toEqual(scenario.game.two.wordsBankId)
     expect(result.statisticsId).toEqual(scenario.game.two.statisticsId)
-    expect(result.updatedAt).toEqual('2022-07-05T17:40:14Z')
+    expect(result.updatedAt).toEqual('2022-07-05T19:28:06Z')
   })
 
   scenario('updates a game', async (scenario: StandardScenario) => {

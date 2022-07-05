@@ -8,6 +8,7 @@ export const schema = gql`
     salt: String!
     resetToken: String
     resetTokenExpiresAt: DateTime
+    roles: String!
     UserSettings: [UserSettings]!
     Game: [Game]!
     Statistics: [Statistics]!
@@ -28,6 +29,7 @@ export const schema = gql`
     salt: String!
     resetToken: String
     resetTokenExpiresAt: DateTime
+    roles: String!
   }
 
   input UpdateUserInput {
@@ -38,6 +40,7 @@ export const schema = gql`
     salt: String
     resetToken: String
     resetTokenExpiresAt: DateTime
+    roles: String
   }
 
   type Mutation {

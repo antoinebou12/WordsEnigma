@@ -1,5 +1,5 @@
 datasource db {
-  provider = "sqlite"
+  provider = "mongodb"
   url      = env("DATABASE_URL")
 }
 
@@ -9,66 +9,64 @@ generator client {
 }
 
 model User {
-  id                  Int            @id @default(autoincrement())
-  username            String         @unique
+  id                  String      @id @default(auto()) @map("_id") @db.ObjectId
+  username            String      @unique
   name                String?
-  email               String         @unique
+  email               String      @unique
   hashedPassword      String
   salt                String
   resetToken          String?
   resetTokenExpiresAt DateTime?
-  UserSettings        UserSettings[]
+  roles               String[]    @default(["user"])
+  userSetting         UserSetting @relation(fields: [userSettingId], references: [id])
+  userSettingId       String
   Game                Game[]
-  Statistics          Statistics[]
-  createdAt           DateTime       @default(now())
-  updatedAt           DateTime       @updatedAt
-
+  Statistics          Statistic[]
+  createdAt           DateTime    @default(now())
+  updatedAt           DateTime    @updatedAt
 }
 
-model UserSettings {
-  id         Int      @id @default(autoincrement())
+model UserSetting {
+  id         String   @id @default(auto()) @map("_id") @db.ObjectId
   bio        String?
-  user       User     @relation(fields: [userId], references: [id])
-  userId     Int
   language   Language @relation(fields: [languageId], references: [id])
-  languageId Int
+  languageId String
   createdAt  DateTime @default(now())
   updatedAt  DateTime @updatedAt
+  User       User[]
 }
 
 model Language {
-  id           Int            @id @default(autoincrement())
+  id           String        @id @default(auto()) @map("_id") @db.ObjectId
   name         String
-  code         String         @unique
-  UserSettings UserSettings[]
+  code         String        @unique
+  UserSettings UserSetting[]
   Word         Word[]
   WordBank     WordBank[]
-  createdAt    DateTime       @default(now())
-  updatedAt    DateTime       @updatedAt
+  createdAt    DateTime      @default(now())
+  updatedAt    DateTime      @updatedAt
 }
 
 model Word {
-  id         Int        @id @default(autoincrement())
-  word       String     @unique
+  id         String   @id @default(auto()) @map("_id") @db.ObjectId
+  word       String   @unique
   definition String?
   example    String?
   synonym    String?
   size       Int
   source     String?
-  language   Language   @relation(fields: [languageId], references: [id])
-  languageId Int
-  wordBanks  WordBank[]
+  language   Language @relation(fields: [languageId], references: [id])
+  languageId String
   Game       Game[]
-  createdAt  DateTime   @default(now())
-  updatedAt  DateTime   @updatedAt
+  createdAt  DateTime @default(now())
+  updatedAt  DateTime @updatedAt
 }
 
 model WordBank {
-  id         Int      @id @default(autoincrement())
+  id         String   @id @default(auto()) @map("_id") @db.ObjectId
   name       String   @unique
-  words      Word[]
   language   Language @relation(fields: [languageId], references: [id])
-  languageId Int
+  languageId String
   source     String?
   Game       Game[]
   createdAt  DateTime @default(now())
@@ -76,39 +74,39 @@ model WordBank {
 }
 
 model Game {
-  id         Int         @id @default(autoincrement())
-  name       String
-  tries      Int         @default(0)
-  startedAt  DateTime
-  finishedAt DateTime?
-  correct    Boolean
-  duration   Int
-  user       User        @relation(fields: [userId], references: [id])
-  userId     Int
-  word       Word        @relation(fields: [wordId], references: [id])
-  wordId     Int
-  wordsBank  WordBank    @relation(fields: [wordsBankId], references: [id])
-  wordsBankId Int
-  tryRows     TryRow[]
-  statistics Statistics? @relation(fields: [statisticsId], references: [id])
-  statisticsId Int
-  createdAt  DateTime    @default(now())
-  updatedAt  DateTime    @updatedAt
+  id           String     @id @default(auto()) @map("_id") @db.ObjectId
+  name         String
+  tries        Int        @default(0)
+  startedAt    DateTime
+  finishedAt   DateTime?
+  correct      Boolean
+  duration     Int
+  user         User       @relation(fields: [userId], references: [id])
+  userId       String
+  word         Word       @relation(fields: [wordId], references: [id])
+  wordId       String
+  wordsBank    WordBank   @relation(fields: [wordsBankId], references: [id])
+  wordsBankId  String
+  tryRows      TryRow[]
+  statistics   Statistic? @relation(fields: [statisticsId], references: [id])
+  statisticsId String
+  createdAt    DateTime   @default(now())
+  updatedAt    DateTime   @updatedAt
 }
 
 model Letter {
-  id         Int      @id @default(autoincrement())
+  id         String   @id @default(auto()) @map("_id") @db.ObjectId
   letter     String
   tryRow     TryRow   @relation(fields: [tryRowId], references: [id])
-  tryRowId   Int
+  tryRowId   String
   createdAt  DateTime
   modifiedAt DateTime
 }
 
 model TryRow {
-  id        Int      @id @default(autoincrement())
+  id        String   @id @default(auto()) @map("_id") @db.ObjectId
   game      Game     @relation(fields: [gameId], references: [id])
-  gameId    Int
+  gameId    String
   tries     Int      @default(0)
   rowSize   Int      @default(0)
   correct   Boolean
@@ -117,8 +115,8 @@ model TryRow {
   updatedAt DateTime @updatedAt
 }
 
-model Statistics {
-  id         Int      @id @default(autoincrement())
+model Statistic {
+  id         String   @id @default(auto()) @map("_id") @db.ObjectId
   gamePlayed Int      @default(0)
   gameWon    Int      @default(0)
   gameLost   Int      @default(0)

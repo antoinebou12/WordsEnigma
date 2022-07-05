@@ -5,42 +5,42 @@ export const standard = defineScenario<Prisma.GameCreateArgs>({
     one: {
       data: {
         name: 'String',
-        startedAt: '2022-07-05T17:40:15Z',
+        startedAt: '2022-07-05T19:28:06Z',
         correct: true,
-        duration: 8622466,
-        updatedAt: '2022-07-05T17:40:15Z',
+        duration: 6773385,
+        updatedAt: '2022-07-05T19:28:06Z',
         user: {
           create: {
-            username: 'String3787824',
-            email: 'String333550',
+            username: 'String1218908',
+            email: 'String6112421',
             hashedPassword: 'String',
             salt: 'String',
-            updatedAt: '2022-07-05T17:40:15Z',
+            updatedAt: '2022-07-05T19:28:06Z',
           },
         },
         word: {
           create: {
-            word: 'String3685133',
-            size: 6308379,
-            updatedAt: '2022-07-05T17:40:15Z',
+            word: 'String757974',
+            size: 7326784,
+            updatedAt: '2022-07-05T19:28:06Z',
             language: {
               create: {
                 name: 'String',
-                code: 'String9872786',
-                updatedAt: '2022-07-05T17:40:15Z',
+                code: 'String7888349',
+                updatedAt: '2022-07-05T19:28:06Z',
               },
             },
           },
         },
         wordsBank: {
           create: {
-            name: 'String8107323',
-            updatedAt: '2022-07-05T17:40:15Z',
+            name: 'String6109382',
+            updatedAt: '2022-07-05T19:28:06Z',
             language: {
               create: {
                 name: 'String',
-                code: 'String3205724',
-                updatedAt: '2022-07-05T17:40:15Z',
+                code: 'String1095364',
+                updatedAt: '2022-07-05T19:28:06Z',
               },
             },
           },
@@ -50,42 +50,42 @@ export const standard = defineScenario<Prisma.GameCreateArgs>({
     two: {
       data: {
         name: 'String',
-        startedAt: '2022-07-05T17:40:15Z',
+        startedAt: '2022-07-05T19:28:06Z',
         correct: true,
-        duration: 4086157,
-        updatedAt: '2022-07-05T17:40:15Z',
+        duration: 5642450,
+        updatedAt: '2022-07-05T19:28:06Z',
         user: {
           create: {
-            username: 'String4710194',
-            email: 'String4769565',
+            username: 'String4076403',
+            email: 'String417948',
             hashedPassword: 'String',
             salt: 'String',
-            updatedAt: '2022-07-05T17:40:15Z',
+            updatedAt: '2022-07-05T19:28:06Z',
           },
         },
         word: {
           create: {
-            word: 'String1191874',
-            size: 1054057,
-            updatedAt: '2022-07-05T17:40:15Z',
+            word: 'String1546076',
+            size: 8127412,
+            updatedAt: '2022-07-05T19:28:06Z',
             language: {
               create: {
                 name: 'String',
-                code: 'String9831033',
-                updatedAt: '2022-07-05T17:40:15Z',
+                code: 'String8183976',
+                updatedAt: '2022-07-05T19:28:06Z',
               },
             },
           },
         },
         wordsBank: {
           create: {
-            name: 'String6389881',
-            updatedAt: '2022-07-05T17:40:15Z',
+            name: 'String5365446',
+            updatedAt: '2022-07-05T19:28:06Z',
             language: {
               create: {
                 name: 'String',
-                code: 'String416693',
-                updatedAt: '2022-07-05T17:40:15Z',
+                code: 'String6005656',
+                updatedAt: '2022-07-05T19:28:06Z',
               },
             },
           },
