@@ -35,6 +35,9 @@ const WordForm = (props) => {
     
     
   
+    
+    
+  
     props.onSave(data, props?.word?.id)
   }
 
@@ -153,6 +156,7 @@ const WordForm = (props) => {
             defaultValue={props.word?.source}
             className="rw-input"
             errorClassName="rw-input rw-input-error"
+            validation={{ required: true }}
           />
         
 
@@ -166,7 +170,7 @@ const WordForm = (props) => {
           Language id
         </Label>
         
-          <NumberField
+          <TextField
             name="languageId"
             defaultValue={props.word?.languageId}
             className="rw-input"
@@ -176,6 +180,24 @@ const WordForm = (props) => {
         
 
         <FieldError name="languageId" className="rw-field-error" />
+
+        <Label
+          name="wordBankId"
+          className="rw-label"
+          errorClassName="rw-label rw-label-error"
+        >
+          Word bank id
+        </Label>
+        
+          <TextField
+            name="wordBankId"
+            defaultValue={props.word?.wordBankId}
+            className="rw-input"
+            errorClassName="rw-input rw-input-error"
+          />
+        
+
+        <FieldError name="wordBankId" className="rw-field-error" />
 
         <div className="rw-button-group">
           <Submit

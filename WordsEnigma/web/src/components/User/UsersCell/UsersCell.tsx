@@ -17,6 +17,7 @@ export const QUERY = gql`
       resetToken
       resetTokenExpiresAt
       roles
+      userSettingId
       createdAt
       updatedAt
     }

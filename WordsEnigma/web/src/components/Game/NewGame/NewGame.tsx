@@ -23,8 +23,7 @@ const NewGame = () => {
   })
 
   const onSave = (input) => {
-    const castInput = Object.assign(input, { userId: parseInt(input.userId), wordId: parseInt(input.wordId), wordsBankId: parseInt(input.wordsBankId), statisticsId: parseInt(input.statisticsId), })
-    createGame({ variables: { input: castInput } })
+    createGame({ variables: { input } })
   }
 
   return (

@@ -1,6 +1,6 @@
 export const schema = gql`
   type Game {
-    id: Int!
+    id: String!
     name: String!
     tries: Int!
     startedAt: DateTime!
@@ -8,21 +8,21 @@ export const schema = gql`
     correct: Boolean!
     duration: Int!
     user: User!
-    userId: Int!
+    userId: String!
     word: Word!
-    wordId: Int!
+    wordId: String!
     wordsBank: WordBank!
-    wordsBankId: Int!
+    wordsBankId: String!
     tryRows: [TryRow]!
-    statistics: Statistics
-    statisticsId: Int!
+    statistics: Statistic
+    statisticsId: String!
     createdAt: DateTime!
     updatedAt: DateTime!
   }
 
   type Query {
     games: [Game!]! @requireAuth
-    game(id: Int!): Game @requireAuth
+    game(id: String!): Game @requireAuth
   }
 
   input CreateGameInput {
@@ -32,10 +32,10 @@ export const schema = gql`
     finishedAt: DateTime
     correct: Boolean!
     duration: Int!
-    userId: Int!
-    wordId: Int!
-    wordsBankId: Int!
-    statisticsId: Int!
+    userId: String!
+    wordId: String!
+    wordsBankId: String!
+    statisticsId: String!
   }
 
   input UpdateGameInput {
@@ -45,15 +45,15 @@ export const schema = gql`
     finishedAt: DateTime
     correct: Boolean
     duration: Int
-    userId: Int
-    wordId: Int
-    wordsBankId: Int
-    statisticsId: Int
+    userId: String
+    wordId: String
+    wordsBankId: String
+    statisticsId: String
   }
 
   type Mutation {
     createGame(input: CreateGameInput!): Game! @requireAuth
-    updateGame(id: Int!, input: UpdateGameInput!): Game! @requireAuth
-    deleteGame(id: Int!): Game! @requireAuth
+    updateGame(id: String!, input: UpdateGameInput!): Game! @requireAuth
+    deleteGame(id: String!): Game! @requireAuth
   }
 `

@@ -23,8 +23,7 @@ const NewWord = () => {
   })
 
   const onSave = (input) => {
-    const castInput = Object.assign(input, { languageId: parseInt(input.languageId), })
-    createWord({ variables: { input: castInput } })
+    createWord({ variables: { input } })
   }
 
   return (

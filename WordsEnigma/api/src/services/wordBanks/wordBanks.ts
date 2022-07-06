@@ -40,10 +40,10 @@ export const deleteWordBank: MutationResolvers['deleteWordBank'] = ({ id }) => {
 }
 
 export const WordBank: WordBankResolvers = {
-  words: (_obj, { root }) =>
-    db.wordBank.findUnique({ where: { id: root.id } }).words(),
-  language: (_obj, { root }) =>
-    db.wordBank.findUnique({ where: { id: root.id } }).language(),
+  Language: (_obj, { root }) =>
+    db.wordBank.findUnique({ where: { id: root.id } }).Language(),
+  Word: (_obj, { root }) =>
+    db.wordBank.findUnique({ where: { id: root.id } }).Word(),
   Game: (_obj, { root }) =>
     db.wordBank.findUnique({ where: { id: root.id } }).Game(),
 }

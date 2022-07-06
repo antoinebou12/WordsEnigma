@@ -1,11 +1,10 @@
 export const schema = gql`
   type WordBank {
-    id: Int!
+    id: String!
     name: String!
-    words: [Word]!
-    language: Language!
-    languageId: Int!
-    source: String
+    Language: Language!
+    languageId: String!
+    Word: [Word]!
     Game: [Game]!
     createdAt: DateTime!
     updatedAt: DateTime!
@@ -13,25 +12,23 @@ export const schema = gql`
 
   type Query {
     wordBanks: [WordBank!]! @requireAuth
-    wordBank(id: Int!): WordBank @requireAuth
+    wordBank(id: String!): WordBank @requireAuth
   }
 
   input CreateWordBankInput {
     name: String!
-    languageId: Int!
-    source: String
+    languageId: String!
   }
 
   input UpdateWordBankInput {
     name: String
-    languageId: Int
-    source: String
+    languageId: String
   }
 
   type Mutation {
     createWordBank(input: CreateWordBankInput!): WordBank! @requireAuth
-    updateWordBank(id: Int!, input: UpdateWordBankInput!): WordBank!
+    updateWordBank(id: String!, input: UpdateWordBankInput!): WordBank!
       @requireAuth
-    deleteWordBank(id: Int!): WordBank! @requireAuth
+    deleteWordBank(id: String!): WordBank! @requireAuth
   }
 `

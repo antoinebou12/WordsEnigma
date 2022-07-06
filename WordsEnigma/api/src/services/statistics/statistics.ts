@@ -2,48 +2,48 @@ import { db } from 'src/lib/db'
 import type {
   QueryResolvers,
   MutationResolvers,
-  StatisticsResolvers,
+  StatisticResolvers,
 } from 'types/graphql'
 
-export const statisticses: QueryResolvers['statisticses'] = () => {
-  return db.statistics.findMany()
+export const statistics: QueryResolvers['statistics'] = () => {
+  return db.statistic.findMany()
 }
 
-export const statistics: QueryResolvers['statistics'] = ({ id }) => {
-  return db.statistics.findUnique({
+export const statistic: QueryResolvers['statistic'] = ({ id }) => {
+  return db.statistic.findUnique({
     where: { id },
   })
 }
 
-export const createStatistics: MutationResolvers['createStatistics'] = ({
+export const createStatistic: MutationResolvers['createStatistic'] = ({
   input,
 }) => {
-  return db.statistics.create({
+  return db.statistic.create({
     data: input,
   })
 }
 
-export const updateStatistics: MutationResolvers['updateStatistics'] = ({
+export const updateStatistic: MutationResolvers['updateStatistic'] = ({
   id,
   input,
 }) => {
-  return db.statistics.update({
+  return db.statistic.update({
     data: input,
     where: { id },
   })
 }
 
-export const deleteStatistics: MutationResolvers['deleteStatistics'] = ({
+export const deleteStatistic: MutationResolvers['deleteStatistic'] = ({
   id,
 }) => {
-  return db.statistics.delete({
+  return db.statistic.delete({
     where: { id },
   })
 }
 
-export const Statistics: StatisticsResolvers = {
+export const Statistic: StatisticResolvers = {
   user: (_obj, { root }) =>
-    db.statistics.findUnique({ where: { id: root.id } }).user(),
+    db.statistic.findUnique({ where: { id: root.id } }).user(),
   Game: (_obj, { root }) =>
-    db.statistics.findUnique({ where: { id: root.id } }).Game(),
+    db.statistic.findUnique({ where: { id: root.id } }).Game(),
 }

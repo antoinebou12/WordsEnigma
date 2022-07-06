@@ -31,15 +31,15 @@ describe('letters', () => {
       input: {
         letter: 'String',
         tryRowId: scenario.letter.two.tryRowId,
-        createdAt: '2022-07-05T17:41:35Z',
-        modifiedAt: '2022-07-05T17:41:35Z',
+        createdAt: '2022-07-05T23:41:32Z',
+        modifiedAt: '2022-07-05T23:41:32Z',
       },
     })
 
     expect(result.letter).toEqual('String')
     expect(result.tryRowId).toEqual(scenario.letter.two.tryRowId)
-    expect(result.createdAt).toEqual('2022-07-05T17:41:35Z')
-    expect(result.modifiedAt).toEqual('2022-07-05T17:41:35Z')
+    expect(result.createdAt).toEqual('2022-07-05T23:41:32Z')
+    expect(result.modifiedAt).toEqual('2022-07-05T23:41:32Z')
   })
 
   scenario('updates a letter', async (scenario: StandardScenario) => {

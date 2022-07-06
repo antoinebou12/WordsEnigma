@@ -4,6 +4,7 @@ import {
   Form,
   Label,
   TextField,
+  EmailField,
   PasswordField,
   FieldError,
   Submit,
@@ -56,6 +57,27 @@ const SignupPage = () => {
             <div className="rw-segment-main">
               <div className="rw-form-wrapper">
                 <Form onSubmit={onSubmit} className="rw-form-wrapper">
+                <FieldError name="name" className="rw-field-error" />
+                  <Label
+                    name="name"
+                    className="rw-label"
+                    errorClassName="rw-label rw-label-error"
+                  >
+                    Name
+                  </Label>
+                  <TextField
+                    name="name"
+                    className="rw-input"
+                    errorClassName="rw-input rw-input-error"
+                    ref={usernameRef}
+                    validation={{
+                      required: {
+                        value: true,
+                        message: 'Name is required',
+                      },
+                    }}
+                  />
+                  <FieldError name="email" className="rw-field-error" />
                   <Label
                     name="username"
                     className="rw-label"
@@ -75,7 +97,27 @@ const SignupPage = () => {
                       },
                     }}
                   />
-                  <FieldError name="username" className="rw-field-error" />
+                  <FieldError name="email" className="rw-field-error" />
+                  <Label
+                    name="email"
+                    className="rw-label"
+                    errorClassName="rw-label rw-label-error"
+                  >
+                    Email
+                  </Label>
+                  <EmailField
+                    name="email"
+                    className="rw-input"
+                    errorClassName="rw-input rw-input-error"
+                    ref={usernameRef}
+                    validation={{
+                      required: {
+                        value: true,
+                        message: 'Email is required',
+                      },
+                    }}
+                  />
+                  <FieldError name="email" className="rw-field-error" />
 
                   <Label
                     name="password"

@@ -1,23 +1,24 @@
 export const schema = gql`
   type Word {
-    id: Int!
+    id: String!
     word: String!
     definition: String
     example: String
     synonym: String
     size: Int!
-    source: String
-    language: Language!
-    languageId: Int!
-    wordBanks: [WordBank]!
+    source: [String]!
+    Language: Language!
+    languageId: String!
     Game: [Game]!
     createdAt: DateTime!
     updatedAt: DateTime!
+    WordBank: WordBank
+    wordBankId: String
   }
 
   type Query {
     words: [Word!]! @requireAuth
-    word(id: Int!): Word @requireAuth
+    word(id: String!): Word @requireAuth
   }
 
   input CreateWordInput {
@@ -26,8 +27,9 @@ export const schema = gql`
     example: String
     synonym: String
     size: Int!
-    source: String
-    languageId: Int!
+    source: [String]!
+    languageId: String!
+    wordBankId: String
   }
 
   input UpdateWordInput {
@@ -36,13 +38,14 @@ export const schema = gql`
     example: String
     synonym: String
     size: Int
-    source: String
-    languageId: Int
+    source: [String]!
+    languageId: String
+    wordBankId: String
   }
 
   type Mutation {
     createWord(input: CreateWordInput!): Word! @requireAuth
-    updateWord(id: Int!, input: UpdateWordInput!): Word! @requireAuth
-    deleteWord(id: Int!): Word! @requireAuth
+    updateWord(id: String!, input: UpdateWordInput!): Word! @requireAuth
+    deleteWord(id: String!): Word! @requireAuth
   }
 `

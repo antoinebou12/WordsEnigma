@@ -2,48 +2,48 @@ import { db } from 'src/lib/db'
 import type {
   QueryResolvers,
   MutationResolvers,
-  UserSettingsResolvers,
+  UserSettingResolvers,
 } from 'types/graphql'
 
-export const userSettingses: QueryResolvers['userSettingses'] = () => {
-  return db.userSettings.findMany()
+export const userSettings: QueryResolvers['userSettings'] = () => {
+  return db.userSetting.findMany()
 }
 
-export const userSettings: QueryResolvers['userSettings'] = ({ id }) => {
-  return db.userSettings.findUnique({
+export const userSetting: QueryResolvers['userSetting'] = ({ id }) => {
+  return db.userSetting.findUnique({
     where: { id },
   })
 }
 
-export const createUserSettings: MutationResolvers['createUserSettings'] = ({
+export const createUserSetting: MutationResolvers['createUserSetting'] = ({
   input,
 }) => {
-  return db.userSettings.create({
+  return db.userSetting.create({
     data: input,
   })
 }
 
-export const updateUserSettings: MutationResolvers['updateUserSettings'] = ({
+export const updateUserSetting: MutationResolvers['updateUserSetting'] = ({
   id,
   input,
 }) => {
-  return db.userSettings.update({
+  return db.userSetting.update({
     data: input,
     where: { id },
   })
 }
 
-export const deleteUserSettings: MutationResolvers['deleteUserSettings'] = ({
+export const deleteUserSetting: MutationResolvers['deleteUserSetting'] = ({
   id,
 }) => {
-  return db.userSettings.delete({
+  return db.userSetting.delete({
     where: { id },
   })
 }
 
-export const UserSettings: UserSettingsResolvers = {
-  user: (_obj, { root }) =>
-    db.userSettings.findUnique({ where: { id: root.id } }).user(),
-  language: (_obj, { root }) =>
-    db.userSettings.findUnique({ where: { id: root.id } }).language(),
+export const UserSetting: UserSettingResolvers = {
+  Language: (_obj, { root }) =>
+    db.userSetting.findUnique({ where: { id: root.id } }).Language(),
+  User: (_obj, { root }) =>
+    db.userSetting.findUnique({ where: { id: root.id } }).User(),
 }

@@ -1,5 +1,6 @@
 import { db } from 'src/lib/db'
 import { DbAuthHandler } from '@redwoodjs/api'
+import { logger } from 'src/lib/logger'
 
 export const handler = async (event, context) => {
 
@@ -45,7 +46,17 @@ export const handler = async (event, context) => {
     // didn't validate their email yet), throw an error and it will be returned
     // by the `logIn()` function from `useAuth()` in the form of:
     // `{ message: 'Error message' }`
-    handler: (user) => {
+    handler: async (user) => {
+      let dbUser = await db.user.findFirst({
+        where: { OR: [{ email: user.email }, { username: user.username }] },
+        select: { id: true, username: true, email: true, name: true, roles: true, lastLogin: true },
+      })
+
+      await db.user.update({
+        where: { id: dbUser.id },
+        data: { lastLogin: new Date() },
+      })
+
       return user
     },
 
@@ -106,9 +117,19 @@ export const handler = async (event, context) => {
       return db.user.create({
         data: {
           username: username,
-          email: username,
+          name: userAttributes.name,
+          email: userAttributes.email,
           hashedPassword: hashedPassword,
           salt: salt,
+          userSetting: {
+            create: {
+              Language: {
+                connect: {
+                  code: "en",
+                }
+              }
+            }
+          }
           // name: userAttributes.name
 
         },
@@ -135,7 +156,7 @@ export const handler = async (event, context) => {
     // something like `id` or `userId` or even `email`)
     authFields: {
       id: 'id',
-      username: 'email',
+      username: 'username',
       hashedPassword: 'hashedPassword',
       salt: 'salt',
       resetToken: 'resetToken',

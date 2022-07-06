@@ -4,7 +4,7 @@ import type { CellSuccessProps, CellFailureProps } from '@redwoodjs/web'
 import Word from 'src/components/Word/Word'
 
 export const QUERY = gql`
-  query FindWordById($id: Int!) {
+  query FindWordById($id: String!) {
     word: word(id: $id) {
       id
       word
@@ -16,6 +16,7 @@ export const QUERY = gql`
       languageId
       createdAt
       updatedAt
+      wordBankId
     }
   }
 `

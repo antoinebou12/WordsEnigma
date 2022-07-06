@@ -1,7 +1,7 @@
 import GameCell from 'src/components/Game/GameCell'
 
 type GamePageProps = {
-  id: number
+  id: string
 }
 
 const GamePage = ({ id }: GamePageProps) => {

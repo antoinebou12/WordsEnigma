@@ -35,10 +35,10 @@ export const deleteWord: MutationResolvers['deleteWord'] = ({ id }) => {
 }
 
 export const Word: WordResolvers = {
-  language: (_obj, { root }) =>
-    db.word.findUnique({ where: { id: root.id } }).language(),
-  wordBanks: (_obj, { root }) =>
-    db.word.findUnique({ where: { id: root.id } }).wordBanks(),
+  Language: (_obj, { root }) =>
+    db.word.findUnique({ where: { id: root.id } }).Language(),
   Game: (_obj, { root }) =>
     db.word.findUnique({ where: { id: root.id } }).Game(),
+  WordBank: (_obj, { root }) =>
+    db.word.findUnique({ where: { id: root.id } }).WordBank(),
 }

@@ -1,7 +1,7 @@
 import EditGameCell from 'src/components/Game/EditGameCell'
 
 type GamePageProps = {
-  id: number
+  id: string
 }
 
 const EditGamePage = ({ id }: GamePageProps) => {

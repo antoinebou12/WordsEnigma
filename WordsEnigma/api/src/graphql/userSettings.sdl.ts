@@ -1,39 +1,38 @@
 export const schema = gql`
-  type UserSettings {
-    id: Int!
+  type UserSetting {
+    id: String!
     bio: String
-    user: User!
-    userId: Int!
-    language: Language!
-    languageId: Int!
+    theme: String
+    Language: Language!
+    User: [User]!
+    languageId: String!
     createdAt: DateTime!
     updatedAt: DateTime!
   }
 
   type Query {
-    userSettingses: [UserSettings!]! @requireAuth
-    userSettings(id: Int!): UserSettings @requireAuth
+    userSettings: [UserSetting!]! @requireAuth
+    userSetting(id: String!): UserSetting @requireAuth
   }
 
-  input CreateUserSettingsInput {
+  input CreateUserSettingInput {
     bio: String
-    userId: Int!
-    languageId: Int!
+    theme: String
+    languageId: String!
   }
 
-  input UpdateUserSettingsInput {
+  input UpdateUserSettingInput {
     bio: String
-    userId: Int
-    languageId: Int
+    theme: String
+    languageId: String
   }
 
   type Mutation {
-    createUserSettings(input: CreateUserSettingsInput!): UserSettings!
-      @requireAuth
-    updateUserSettings(
-      id: Int!
-      input: UpdateUserSettingsInput!
-    ): UserSettings! @requireAuth
-    deleteUserSettings(id: Int!): UserSettings! @requireAuth
+    createUserSetting(input: CreateUserSettingInput!): UserSetting! @requireAuth
+    updateUserSetting(
+      id: String!
+      input: UpdateUserSettingInput!
+    ): UserSetting! @requireAuth
+    deleteUserSetting(id: String!): UserSetting! @requireAuth
   }
 `

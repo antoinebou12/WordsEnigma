@@ -23,27 +23,29 @@ describe('words', () => {
   scenario('creates a word', async (scenario: StandardScenario) => {
     const result = await createWord({
       input: {
-        word: 'String7790448',
-        size: 3534283,
+        word: 'String8626709',
+        size: 3528520,
+        source: 'String',
         languageId: scenario.word.two.languageId,
-        updatedAt: '2022-07-05T19:28:22Z',
+        updatedAt: '2022-07-05T23:40:54Z',
       },
     })
 
-    expect(result.word).toEqual('String7790448')
-    expect(result.size).toEqual(3534283)
+    expect(result.word).toEqual('String8626709')
+    expect(result.size).toEqual(3528520)
+    expect(result.source).toEqual('String')
     expect(result.languageId).toEqual(scenario.word.two.languageId)
-    expect(result.updatedAt).toEqual('2022-07-05T19:28:22Z')
+    expect(result.updatedAt).toEqual('2022-07-05T23:40:54Z')
   })
 
   scenario('updates a word', async (scenario: StandardScenario) => {
     const original = await word({ id: scenario.word.one.id })
     const result = await updateWord({
       id: original.id,
-      input: { word: 'String22445102' },
+      input: { word: 'String66826832' },
     })
 
-    expect(result.word).toEqual('String22445102')
+    expect(result.word).toEqual('String66826832')
   })
 
   scenario('deletes a word', async (scenario: StandardScenario) => {

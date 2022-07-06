@@ -5,7 +5,7 @@ import { toast } from '@redwoodjs/web/toast'
 import { Link, routes, navigate } from '@redwoodjs/router'
 
 const DELETE_USER_MUTATION = gql`
-  mutation DeleteUserMutation($id: Int!) {
+  mutation DeleteUserMutation($id: String!) {
     deleteUser(id: $id) {
       id
     }
@@ -97,6 +97,9 @@ const User = ({ user }) => {
             </tr><tr>
               <th>Roles</th>
               <td>{user.roles}</td>
+            </tr><tr>
+              <th>User setting id</th>
+              <td>{user.userSettingId}</td>
             </tr><tr>
               <th>Created at</th>
               <td>{timeTag(user.createdAt)}</td>

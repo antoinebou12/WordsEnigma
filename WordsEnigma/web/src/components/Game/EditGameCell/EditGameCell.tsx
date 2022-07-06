@@ -8,7 +8,7 @@ import { navigate, routes } from '@redwoodjs/router'
 import GameForm from 'src/components/Game/GameForm'
 
 export const QUERY = gql`
-  query EditGameById($id: Int!) {
+  query EditGameById($id: String!) {
     game: game(id: $id) {
       id
       name
@@ -27,7 +27,7 @@ export const QUERY = gql`
   }
 `
 const UPDATE_GAME_MUTATION = gql`
-  mutation UpdateGameMutation($id: Int!, $input: UpdateGameInput!) {
+  mutation UpdateGameMutation($id: String!, $input: UpdateGameInput!) {
     updateGame(id: $id, input: $input) {
       id
       name
@@ -64,8 +64,7 @@ export const Success = ({ game }: CellSuccessProps<EditGameById>) => {
   })
 
   const onSave = (input, id) => {
-    const castInput = Object.assign(input, { userId: parseInt(input.userId), wordId: parseInt(input.wordId), wordsBankId: parseInt(input.wordsBankId), statisticsId: parseInt(input.statisticsId), })
-    updateGame({ variables: { id, input: castInput } })
+    updateGame({ variables: { id, input } })
   }
 
   return (

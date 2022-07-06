@@ -1,6 +1,6 @@
 export const schema = gql`
-  type Statistics {
-    id: Int!
+  type Statistic {
+    id: String!
     gamePlayed: Int!
     gameWon: Int!
     gameLost: Int!
@@ -13,11 +13,11 @@ export const schema = gql`
   }
 
   type Query {
-    statisticses: [Statistics!]! @requireAuth
-    statistics(id: Int!): Statistics @requireAuth
+    statistics: [Statistic!]! @requireAuth
+    statistic(id: String!): Statistic @requireAuth
   }
 
-  input CreateStatisticsInput {
+  input CreateStatisticInput {
     gamePlayed: Int!
     gameWon: Int!
     gameLost: Int!
@@ -25,7 +25,7 @@ export const schema = gql`
     average: Int!
   }
 
-  input UpdateStatisticsInput {
+  input UpdateStatisticInput {
     gamePlayed: Int
     gameWon: Int
     gameLost: Int
@@ -34,9 +34,9 @@ export const schema = gql`
   }
 
   type Mutation {
-    createStatistics(input: CreateStatisticsInput!): Statistics! @requireAuth
-    updateStatistics(id: Int!, input: UpdateStatisticsInput!): Statistics!
+    createStatistic(input: CreateStatisticInput!): Statistic! @requireAuth
+    updateStatistic(id: String!, input: UpdateStatisticInput!): Statistic!
       @requireAuth
-    deleteStatistics(id: Int!): Statistics! @requireAuth
+    deleteStatistic(id: String!): Statistic! @requireAuth
   }
 `

@@ -9,9 +9,9 @@ generator client {
 
 model User {
   id                  String      @id @default(cuid())
+  email               String      @unique
   username            String      @unique
   name                String?
-  email               String      @unique
   hashedPassword      String
   salt                String
   resetToken          String?
@@ -21,6 +21,7 @@ model User {
   userSettingId       String
   Game                Game[]
   Statistics          Statistic[]
+  lastLogin           DateTime?
   createdAt           DateTime    @default(now())
   updatedAt           DateTime    @updatedAt
 }

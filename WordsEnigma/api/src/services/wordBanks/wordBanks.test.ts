@@ -29,25 +29,25 @@ describe('wordBanks', () => {
   scenario('creates a wordBank', async (scenario: StandardScenario) => {
     const result = await createWordBank({
       input: {
-        name: 'String3451618',
+        name: 'String1536137',
         languageId: scenario.wordBank.two.languageId,
-        updatedAt: '2022-07-05T17:39:51Z',
+        updatedAt: '2022-07-05T23:41:06Z',
       },
     })
 
-    expect(result.name).toEqual('String3451618')
+    expect(result.name).toEqual('String1536137')
     expect(result.languageId).toEqual(scenario.wordBank.two.languageId)
-    expect(result.updatedAt).toEqual('2022-07-05T17:39:51Z')
+    expect(result.updatedAt).toEqual('2022-07-05T23:41:06Z')
   })
 
   scenario('updates a wordBank', async (scenario: StandardScenario) => {
     const original = await wordBank({ id: scenario.wordBank.one.id })
     const result = await updateWordBank({
       id: original.id,
-      input: { name: 'String68297072' },
+      input: { name: 'String98507602' },
     })
 
-    expect(result.name).toEqual('String68297072')
+    expect(result.name).toEqual('String98507602')
   })
 
   scenario('deletes a wordBank', async (scenario: StandardScenario) => {

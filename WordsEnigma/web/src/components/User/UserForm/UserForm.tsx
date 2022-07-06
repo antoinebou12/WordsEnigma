@@ -44,6 +44,9 @@ const UserForm = (props) => {
     
     
   
+    
+    
+  
     props.onSave(data, props?.user?.id)
   }
 
@@ -205,6 +208,25 @@ const UserForm = (props) => {
         
 
         <FieldError name="roles" className="rw-field-error" />
+
+        <Label
+          name="userSettingId"
+          className="rw-label"
+          errorClassName="rw-label rw-label-error"
+        >
+          User setting id
+        </Label>
+        
+          <TextField
+            name="userSettingId"
+            defaultValue={props.user?.userSettingId}
+            className="rw-input"
+            errorClassName="rw-input rw-input-error"
+            validation={{ required: true }}
+          />
+        
+
+        <FieldError name="userSettingId" className="rw-field-error" />
 
         <div className="rw-button-group">
           <Submit

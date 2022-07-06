@@ -1,8 +1,8 @@
 export const schema = gql`
   type TryRow {
-    id: Int!
+    id: String!
     game: Game!
-    gameId: Int!
+    gameId: String!
     tries: Int!
     rowSize: Int!
     correct: Boolean!
@@ -13,18 +13,18 @@ export const schema = gql`
 
   type Query {
     tryRows: [TryRow!]! @requireAuth
-    tryRow(id: Int!): TryRow @requireAuth
+    tryRow(id: String!): TryRow @requireAuth
   }
 
   input CreateTryRowInput {
-    gameId: Int!
+    gameId: String!
     tries: Int!
     rowSize: Int!
     correct: Boolean!
   }
 
   input UpdateTryRowInput {
-    gameId: Int
+    gameId: String
     tries: Int
     rowSize: Int
     correct: Boolean
@@ -32,7 +32,7 @@ export const schema = gql`
 
   type Mutation {
     createTryRow(input: CreateTryRowInput!): TryRow! @requireAuth
-    updateTryRow(id: Int!, input: UpdateTryRowInput!): TryRow! @requireAuth
-    deleteTryRow(id: Int!): TryRow! @requireAuth
+    updateTryRow(id: String!, input: UpdateTryRowInput!): TryRow! @requireAuth
+    deleteTryRow(id: String!): TryRow! @requireAuth
   }
 `

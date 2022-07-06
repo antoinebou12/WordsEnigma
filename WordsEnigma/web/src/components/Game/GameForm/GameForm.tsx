@@ -185,7 +185,7 @@ const GameForm = (props) => {
           User id
         </Label>
         
-          <NumberField
+          <TextField
             name="userId"
             defaultValue={props.game?.userId}
             className="rw-input"
@@ -204,7 +204,7 @@ const GameForm = (props) => {
           Word id
         </Label>
         
-          <NumberField
+          <TextField
             name="wordId"
             defaultValue={props.game?.wordId}
             className="rw-input"
@@ -223,7 +223,7 @@ const GameForm = (props) => {
           Words bank id
         </Label>
         
-          <NumberField
+          <TextField
             name="wordsBankId"
             defaultValue={props.game?.wordsBankId}
             className="rw-input"
@@ -242,7 +242,7 @@ const GameForm = (props) => {
           Statistics id
         </Label>
         
-          <NumberField
+          <TextField
             name="statisticsId"
             defaultValue={props.game?.statisticsId}
             className="rw-input"

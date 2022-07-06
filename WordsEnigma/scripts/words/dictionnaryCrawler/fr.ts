@@ -67,7 +67,7 @@ async function getDefinitionFromLeDictionnaire(word: String): Promise<any> {
                 };
             } else {
                 console.log("Error occurred while fetching data " + word);
-                return { definition: "", source: "" };
+                return { definition: null, source: null };
             }
         } else {
             console.log("Error occurred while fetching data " + word);
@@ -92,8 +92,8 @@ export async function getDefinition(word: String): Promise<any> {
                     };
                 } else {
                     return {
-                        definition: "",
-                        source: ""
+                        definition: null,
+                        source:  null
                     };
                 }
             });

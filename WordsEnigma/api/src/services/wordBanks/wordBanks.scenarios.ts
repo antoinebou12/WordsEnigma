@@ -4,26 +4,26 @@ export const standard = defineScenario<Prisma.WordBankCreateArgs>({
   wordBank: {
     one: {
       data: {
-        name: 'String4429308',
-        updatedAt: '2022-07-05T17:39:51Z',
-        language: {
+        name: 'String8498064',
+        updatedAt: '2022-07-05T23:41:06Z',
+        Language: {
           create: {
             name: 'String',
-            code: 'String1914459',
-            updatedAt: '2022-07-05T17:39:51Z',
+            code: 'String8180276',
+            updatedAt: '2022-07-05T23:41:06Z',
           },
         },
       },
     },
     two: {
       data: {
-        name: 'String7375559',
-        updatedAt: '2022-07-05T17:39:51Z',
-        language: {
+        name: 'String7670115',
+        updatedAt: '2022-07-05T23:41:06Z',
+        Language: {
           create: {
             name: 'String',
-            code: 'String1456948',
-            updatedAt: '2022-07-05T17:39:51Z',
+            code: 'String8263895',
+            updatedAt: '2022-07-05T23:41:06Z',
           },
         },
       },

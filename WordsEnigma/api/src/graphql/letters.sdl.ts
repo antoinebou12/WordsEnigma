@@ -1,33 +1,33 @@
 export const schema = gql`
   type Letter {
-    id: Int!
+    id: String!
     letter: String!
     tryRow: TryRow!
-    tryRowId: Int!
+    tryRowId: String!
     createdAt: DateTime!
     modifiedAt: DateTime!
   }
 
   type Query {
     letters: [Letter!]! @requireAuth
-    letter(id: Int!): Letter @requireAuth
+    letter(id: String!): Letter @requireAuth
   }
 
   input CreateLetterInput {
     letter: String!
-    tryRowId: Int!
+    tryRowId: String!
     modifiedAt: DateTime!
   }
 
   input UpdateLetterInput {
     letter: String
-    tryRowId: Int
+    tryRowId: String
     modifiedAt: DateTime
   }
 
   type Mutation {
     createLetter(input: CreateLetterInput!): Letter! @requireAuth
-    updateLetter(id: Int!, input: UpdateLetterInput!): Letter! @requireAuth
-    deleteLetter(id: Int!): Letter! @requireAuth
+    updateLetter(id: String!, input: UpdateLetterInput!): Letter! @requireAuth
+    deleteLetter(id: String!): Letter! @requireAuth
   }
 `

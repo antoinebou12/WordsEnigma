@@ -8,7 +8,7 @@ import { navigate, routes } from '@redwoodjs/router'
 import UserForm from 'src/components/User/UserForm'
 
 export const QUERY = gql`
-  query EditUserById($id: Int!) {
+  query EditUserById($id: String!) {
     user: user(id: $id) {
       id
       username
@@ -19,13 +19,14 @@ export const QUERY = gql`
       resetToken
       resetTokenExpiresAt
       roles
+      userSettingId
       createdAt
       updatedAt
     }
   }
 `
 const UPDATE_USER_MUTATION = gql`
-  mutation UpdateUserMutation($id: Int!, $input: UpdateUserInput!) {
+  mutation UpdateUserMutation($id: String!, $input: UpdateUserInput!) {
     updateUser(id: $id, input: $input) {
       id
       username
@@ -36,6 +37,7 @@ const UPDATE_USER_MUTATION = gql`
       resetToken
       resetTokenExpiresAt
       roles
+      userSettingId
       createdAt
       updatedAt
     }

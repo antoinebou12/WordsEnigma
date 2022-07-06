@@ -1,7 +1,7 @@
 import EditWordCell from 'src/components/Word/EditWordCell'
 
 type WordPageProps = {
-  id: number
+  id: string
 }
 
 const EditWordPage = ({ id }: WordPageProps) => {

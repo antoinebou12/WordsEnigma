@@ -7,7 +7,7 @@ import { Link, routes } from '@redwoodjs/router'
 import { QUERY } from 'src/components/User/UsersCell'
 
 const DELETE_USER_MUTATION = gql`
-  mutation DeleteUserMutation($id: Int!) {
+  mutation DeleteUserMutation($id: String!) {
     deleteUser(id: $id) {
       id
     }
@@ -88,6 +88,7 @@ const UsersList = ({ users }) => {
             <th>Reset token</th>
             <th>Reset token expires at</th>
             <th>Roles</th>
+            <th>User setting id</th>
             <th>Created at</th>
             <th>Updated at</th>
             <th>&nbsp;</th>
@@ -105,6 +106,7 @@ const UsersList = ({ users }) => {
               <td>{truncate(user.resetToken)}</td>
               <td>{timeTag(user.resetTokenExpiresAt)}</td>
               <td>{truncate(user.roles)}</td>
+              <td>{truncate(user.userSettingId)}</td>
               <td>{timeTag(user.createdAt)}</td>
               <td>{timeTag(user.updatedAt)}</td>
               <td>

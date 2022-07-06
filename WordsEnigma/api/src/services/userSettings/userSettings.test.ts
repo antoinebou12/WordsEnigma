@@ -1,9 +1,9 @@
 import {
-  userSettingses,
   userSettings,
-  createUserSettings,
-  updateUserSettings,
-  deleteUserSettings,
+  userSetting,
+  createUserSetting,
+  updateUserSetting,
+  deleteUserSetting,
 } from './userSettings'
 import type { StandardScenario } from './userSettings.scenarios'
 
@@ -13,51 +13,49 @@ import type { StandardScenario } from './userSettings.scenarios'
 //       https://redwoodjs.com/docs/testing#testing-services
 // https://redwoodjs.com/docs/testing#jest-expect-type-considerations
 
-describe('userSettingses', () => {
-  scenario('returns all userSettingses', async (scenario: StandardScenario) => {
-    const result = await userSettingses()
+describe('userSettings', () => {
+  scenario('returns all userSettings', async (scenario: StandardScenario) => {
+    const result = await userSettings()
 
-    expect(result.length).toEqual(Object.keys(scenario.userSettings).length)
+    expect(result.length).toEqual(Object.keys(scenario.userSetting).length)
   })
 
   scenario(
-    'returns a single userSettings',
+    'returns a single userSetting',
     async (scenario: StandardScenario) => {
-      const result = await userSettings({ id: scenario.userSettings.one.id })
+      const result = await userSetting({ id: scenario.userSetting.one.id })
 
-      expect(result).toEqual(scenario.userSettings.one)
+      expect(result).toEqual(scenario.userSetting.one)
     }
   )
 
-  scenario('creates a userSettings', async (scenario: StandardScenario) => {
-    const result = await createUserSettings({
+  scenario('creates a userSetting', async (scenario: StandardScenario) => {
+    const result = await createUserSetting({
       input: {
-        userId: scenario.userSettings.two.userId,
-        languageId: scenario.userSettings.two.languageId,
-        updatedAt: '2022-07-05T17:39:20Z',
+        languageId: scenario.userSetting.two.languageId,
+        updatedAt: '2022-07-05T23:40:22Z',
       },
     })
 
-    expect(result.userId).toEqual(scenario.userSettings.two.userId)
-    expect(result.languageId).toEqual(scenario.userSettings.two.languageId)
-    expect(result.updatedAt).toEqual('2022-07-05T17:39:20Z')
+    expect(result.languageId).toEqual(scenario.userSetting.two.languageId)
+    expect(result.updatedAt).toEqual('2022-07-05T23:40:22Z')
   })
 
-  scenario('updates a userSettings', async (scenario: StandardScenario) => {
-    const original = await userSettings({ id: scenario.userSettings.one.id })
-    const result = await updateUserSettings({
+  scenario('updates a userSetting', async (scenario: StandardScenario) => {
+    const original = await userSetting({ id: scenario.userSetting.one.id })
+    const result = await updateUserSetting({
       id: original.id,
-      input: { updatedAt: '2022-07-06T17:39:20Z' },
+      input: { updatedAt: '2022-07-06T23:40:22Z' },
     })
 
-    expect(result.updatedAt).toEqual('2022-07-06T17:39:20Z')
+    expect(result.updatedAt).toEqual('2022-07-06T23:40:22Z')
   })
 
-  scenario('deletes a userSettings', async (scenario: StandardScenario) => {
-    const original = await deleteUserSettings({
-      id: scenario.userSettings.one.id,
+  scenario('deletes a userSetting', async (scenario: StandardScenario) => {
+    const original = await deleteUserSetting({
+      id: scenario.userSetting.one.id,
     })
-    const result = await userSettings({ id: original.id })
+    const result = await userSetting({ id: original.id })
 
     expect(result).toEqual(null)
   })

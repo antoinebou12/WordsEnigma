@@ -1,9 +1,9 @@
 import {
-  statisticses,
   statistics,
-  createStatistics,
-  updateStatistics,
-  deleteStatistics,
+  statistic,
+  createStatistic,
+  updateStatistic,
+  deleteStatistic,
 } from './statistics'
 import type { StandardScenario } from './statistics.scenarios'
 
@@ -13,43 +13,40 @@ import type { StandardScenario } from './statistics.scenarios'
 //       https://redwoodjs.com/docs/testing#testing-services
 // https://redwoodjs.com/docs/testing#jest-expect-type-considerations
 
-describe('statisticses', () => {
-  scenario('returns all statisticses', async (scenario: StandardScenario) => {
-    const result = await statisticses()
+describe('statistics', () => {
+  scenario('returns all statistics', async (scenario: StandardScenario) => {
+    const result = await statistics()
 
-    expect(result.length).toEqual(Object.keys(scenario.statistics).length)
+    expect(result.length).toEqual(Object.keys(scenario.statistic).length)
   })
 
-  scenario(
-    'returns a single statistics',
-    async (scenario: StandardScenario) => {
-      const result = await statistics({ id: scenario.statistics.one.id })
+  scenario('returns a single statistic', async (scenario: StandardScenario) => {
+    const result = await statistic({ id: scenario.statistic.one.id })
 
-      expect(result).toEqual(scenario.statistics.one)
-    }
-  )
+    expect(result).toEqual(scenario.statistic.one)
+  })
 
-  scenario('creates a statistics', async () => {
-    const result = await createStatistics({
-      input: { updatedAt: '2022-07-05T17:41:22Z' },
+  scenario('creates a statistic', async () => {
+    const result = await createStatistic({
+      input: { updatedAt: '2022-07-05T23:41:59Z' },
     })
 
-    expect(result.updatedAt).toEqual('2022-07-05T17:41:22Z')
+    expect(result.updatedAt).toEqual('2022-07-05T23:41:59Z')
   })
 
-  scenario('updates a statistics', async (scenario: StandardScenario) => {
-    const original = await statistics({ id: scenario.statistics.one.id })
-    const result = await updateStatistics({
+  scenario('updates a statistic', async (scenario: StandardScenario) => {
+    const original = await statistic({ id: scenario.statistic.one.id })
+    const result = await updateStatistic({
       id: original.id,
-      input: { updatedAt: '2022-07-06T17:41:22Z' },
+      input: { updatedAt: '2022-07-06T23:41:59Z' },
     })
 
-    expect(result.updatedAt).toEqual('2022-07-06T17:41:22Z')
+    expect(result.updatedAt).toEqual('2022-07-06T23:41:59Z')
   })
 
-  scenario('deletes a statistics', async (scenario: StandardScenario) => {
-    const original = await deleteStatistics({ id: scenario.statistics.one.id })
-    const result = await statistics({ id: original.id })
+  scenario('deletes a statistic', async (scenario: StandardScenario) => {
+    const original = await deleteStatistic({ id: scenario.statistic.one.id })
+    const result = await statistic({ id: original.id })
 
     expect(result).toEqual(null)
   })

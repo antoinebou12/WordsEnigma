@@ -5,7 +5,7 @@ import { toast } from '@redwoodjs/web/toast'
 import { Link, routes, navigate } from '@redwoodjs/router'
 
 const DELETE_WORD_MUTATION = gql`
-  mutation DeleteWordMutation($id: Int!) {
+  mutation DeleteWordMutation($id: String!) {
     deleteWord(id: $id) {
       id
     }
@@ -100,6 +100,9 @@ const Word = ({ word }) => {
             </tr><tr>
               <th>Updated at</th>
               <td>{timeTag(word.updatedAt)}</td>
+            </tr><tr>
+              <th>Word bank id</th>
+              <td>{word.wordBankId}</td>
             </tr>
           </tbody>
         </table>

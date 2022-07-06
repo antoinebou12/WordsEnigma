@@ -31,13 +31,13 @@ describe('tryRows', () => {
       input: {
         gameId: scenario.tryRow.two.gameId,
         correct: true,
-        updatedAt: '2022-07-05T17:40:25Z',
+        updatedAt: '2022-07-05T23:41:46Z',
       },
     })
 
     expect(result.gameId).toEqual(scenario.tryRow.two.gameId)
     expect(result.correct).toEqual(true)
-    expect(result.updatedAt).toEqual('2022-07-05T17:40:25Z')
+    expect(result.updatedAt).toEqual('2022-07-05T23:41:46Z')
   })
 
   scenario('updates a tryRow', async (scenario: StandardScenario) => {

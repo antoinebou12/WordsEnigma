@@ -1,9 +1,9 @@
 export const schema = gql`
   type Language {
-    id: Int!
+    id: String!
     name: String!
     code: String!
-    UserSettings: [UserSettings]!
+    UserSettings: [UserSetting]!
     Word: [Word]!
     WordBank: [WordBank]!
     createdAt: DateTime!
@@ -12,7 +12,7 @@ export const schema = gql`
 
   type Query {
     languages: [Language!]! @requireAuth
-    language(id: Int!): Language @requireAuth
+    language(id: String!): Language @requireAuth
   }
 
   input CreateLanguageInput {
@@ -27,8 +27,8 @@ export const schema = gql`
 
   type Mutation {
     createLanguage(input: CreateLanguageInput!): Language! @requireAuth
-    updateLanguage(id: Int!, input: UpdateLanguageInput!): Language!
+    updateLanguage(id: String!, input: UpdateLanguageInput!): Language!
       @requireAuth
-    deleteLanguage(id: Int!): Language! @requireAuth
+    deleteLanguage(id: String!): Language! @requireAuth
   }
 `
