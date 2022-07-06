@@ -5,7 +5,7 @@ import { toast } from '@redwoodjs/web/toast'
 import { Link, routes, navigate } from '@redwoodjs/router'
 
 const DELETE_LANGUAGE_MUTATION = gql`
-  mutation DeleteLanguageMutation($id: Int!) {
+  mutation DeleteLanguageMutation($id: String!) {
     deleteLanguage(id: $id) {
       id
     }
@@ -82,6 +82,9 @@ const Language = ({ language }) => {
             </tr><tr>
               <th>Created at</th>
               <td>{timeTag(language.createdAt)}</td>
+            </tr><tr>
+              <th>Updated at</th>
+              <td>{timeTag(language.updatedAt)}</td>
             </tr>
           </tbody>
         </table>

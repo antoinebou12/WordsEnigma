@@ -7,7 +7,7 @@ import { Link, routes } from '@redwoodjs/router'
 import { QUERY } from 'src/components/Language/LanguagesCell'
 
 const DELETE_LANGUAGE_MUTATION = gql`
-  mutation DeleteLanguageMutation($id: Int!) {
+  mutation DeleteLanguageMutation($id: String!) {
     deleteLanguage(id: $id) {
       id
     }
@@ -83,6 +83,7 @@ const LanguagesList = ({ languages }) => {
             <th>Name</th>
             <th>Code</th>
             <th>Created at</th>
+            <th>Updated at</th>
             <th>&nbsp;</th>
           </tr>
         </thead>
@@ -93,6 +94,7 @@ const LanguagesList = ({ languages }) => {
               <td>{truncate(language.name)}</td>
               <td>{truncate(language.code)}</td>
               <td>{timeTag(language.createdAt)}</td>
+              <td>{timeTag(language.updatedAt)}</td>
               <td>
                 <nav className="rw-table-actions">
                   <Link

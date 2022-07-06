@@ -8,28 +8,36 @@ import { navigate, routes } from '@redwoodjs/router'
 import WordForm from 'src/components/Word/WordForm'
 
 export const QUERY = gql`
-  query EditWordById($id: Int!) {
+  query EditWordById($id: String!) {
     word: word(id: $id) {
       id
       word
       definition
       example
+      synonym
+      size
+      source
       languageId
       createdAt
-      wordsBankId
+      updatedAt
+      wordBankId
     }
   }
 `
 const UPDATE_WORD_MUTATION = gql`
-  mutation UpdateWordMutation($id: Int!, $input: UpdateWordInput!) {
+  mutation UpdateWordMutation($id: String!, $input: UpdateWordInput!) {
     updateWord(id: $id, input: $input) {
       id
       word
       definition
       example
+      synonym
+      size
+      source
       languageId
       createdAt
-      wordsBankId
+      updatedAt
+      wordBankId
     }
   }
 `
@@ -52,8 +60,7 @@ export const Success = ({ word }: CellSuccessProps<EditWordById>) => {
   })
 
   const onSave = (input, id) => {
-    const castInput = Object.assign(input, { languageId: parseInt(input.languageId), wordsBankId: parseInt(input.wordsBankId), })
-    updateWord({ variables: { id, input: castInput } })
+    updateWord({ variables: { id, input } })
   }
 
   return (

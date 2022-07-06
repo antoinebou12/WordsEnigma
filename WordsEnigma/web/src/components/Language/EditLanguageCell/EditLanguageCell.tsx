@@ -8,22 +8,24 @@ import { navigate, routes } from '@redwoodjs/router'
 import LanguageForm from 'src/components/Language/LanguageForm'
 
 export const QUERY = gql`
-  query EditLanguageById($id: Int!) {
+  query EditLanguageById($id: String!) {
     language: language(id: $id) {
       id
       name
       code
       createdAt
+      updatedAt
     }
   }
 `
 const UPDATE_LANGUAGE_MUTATION = gql`
-  mutation UpdateLanguageMutation($id: Int!, $input: UpdateLanguageInput!) {
+  mutation UpdateLanguageMutation($id: String!, $input: UpdateLanguageInput!) {
     updateLanguage(id: $id, input: $input) {
       id
       name
       code
       createdAt
+      updatedAt
     }
   }
 `

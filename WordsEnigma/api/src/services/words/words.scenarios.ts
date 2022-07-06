@@ -4,26 +4,30 @@ export const standard = defineScenario<Prisma.WordCreateArgs>({
   word: {
     one: {
       data: {
-        word: 'String',
-        createdAt: '2022-06-29T14:20:54Z',
-        language: {
+        word: 'String2616908',
+        size: 836638,
+        source: 'String',
+        updatedAt: '2022-07-05T23:40:54Z',
+        Language: {
           create: {
             name: 'String',
-            code: 'String',
-            createdAt: '2022-06-29T14:20:54Z',
+            code: 'String7286670',
+            updatedAt: '2022-07-05T23:40:54Z',
           },
         },
       },
     },
     two: {
       data: {
-        word: 'String',
-        createdAt: '2022-06-29T14:20:54Z',
-        language: {
+        word: 'String3512972',
+        size: 7859454,
+        source: 'String',
+        updatedAt: '2022-07-05T23:40:54Z',
+        Language: {
           create: {
             name: 'String',
-            code: 'String',
-            createdAt: '2022-06-29T14:20:54Z',
+            code: 'String1805532',
+            updatedAt: '2022-07-05T23:40:54Z',
           },
         },
       },

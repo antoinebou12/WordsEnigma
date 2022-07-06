@@ -12,6 +12,7 @@ export const QUERY = gql`
       name
       code
       createdAt
+      updatedAt
     }
   }
 `

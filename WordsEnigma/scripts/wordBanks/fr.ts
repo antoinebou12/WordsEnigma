@@ -1,7 +1,7 @@
 import { PrismaClient } from '@prisma/client';
 import { Logger } from 'pino';
 
-import { url } from './../dictionnaryCrawler/fr';
+import { urlLeDictionnaire, urlWiktionary } from '../words/dictionnaryCrawler/fr';
 
 const languageCode = 'fr'
 
@@ -14,8 +14,7 @@ export async function addWordBank(db: PrismaClient, logger: Logger) {
             update: {},
             create: {
                 name: languageCode,
-                source: url,
-                language: {
+                Language: {
                     connect: {
                         code: languageCode,
                     },

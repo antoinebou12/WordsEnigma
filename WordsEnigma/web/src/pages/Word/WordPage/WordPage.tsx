@@ -1,7 +1,7 @@
 import WordCell from 'src/components/Word/WordCell'
 
 type WordPageProps = {
-  id: number
+  id: string
 }
 
 const WordPage = ({ id }: WordPageProps) => {

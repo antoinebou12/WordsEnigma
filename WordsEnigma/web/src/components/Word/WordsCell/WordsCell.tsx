@@ -12,9 +12,13 @@ export const QUERY = gql`
       word
       definition
       example
+      synonym
+      size
+      source
       languageId
       createdAt
-      wordsBankId
+      updatedAt
+      wordBankId
     }
   }
 `

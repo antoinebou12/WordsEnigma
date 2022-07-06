@@ -1,7 +1,7 @@
 import LanguageCell from 'src/components/Language/LanguageCell'
 
 type LanguagePageProps = {
-  id: number
+  id: string
 }
 
 const LanguagePage = ({ id }: LanguagePageProps) => {

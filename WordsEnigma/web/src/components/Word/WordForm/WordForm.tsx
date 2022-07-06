@@ -29,6 +29,15 @@ const WordForm = (props) => {
     
     
   
+    
+    
+  
+    
+    
+  
+    
+    
+  
     props.onSave(data, props?.word?.id)
   }
 
@@ -98,6 +107,62 @@ const WordForm = (props) => {
         <FieldError name="example" className="rw-field-error" />
 
         <Label
+          name="synonym"
+          className="rw-label"
+          errorClassName="rw-label rw-label-error"
+        >
+          Synonym
+        </Label>
+        
+          <TextField
+            name="synonym"
+            defaultValue={props.word?.synonym}
+            className="rw-input"
+            errorClassName="rw-input rw-input-error"
+          />
+        
+
+        <FieldError name="synonym" className="rw-field-error" />
+
+        <Label
+          name="size"
+          className="rw-label"
+          errorClassName="rw-label rw-label-error"
+        >
+          Size
+        </Label>
+        
+          <NumberField
+            name="size"
+            defaultValue={props.word?.size}
+            className="rw-input"
+            errorClassName="rw-input rw-input-error"
+            validation={{ required: true }}
+          />
+        
+
+        <FieldError name="size" className="rw-field-error" />
+
+        <Label
+          name="source"
+          className="rw-label"
+          errorClassName="rw-label rw-label-error"
+        >
+          Source
+        </Label>
+        
+          <TextField
+            name="source"
+            defaultValue={props.word?.source}
+            className="rw-input"
+            errorClassName="rw-input rw-input-error"
+            validation={{ required: true }}
+          />
+        
+
+        <FieldError name="source" className="rw-field-error" />
+
+        <Label
           name="languageId"
           className="rw-label"
           errorClassName="rw-label rw-label-error"
@@ -105,7 +170,7 @@ const WordForm = (props) => {
           Language id
         </Label>
         
-          <NumberField
+          <TextField
             name="languageId"
             defaultValue={props.word?.languageId}
             className="rw-input"
@@ -117,22 +182,22 @@ const WordForm = (props) => {
         <FieldError name="languageId" className="rw-field-error" />
 
         <Label
-          name="wordsBankId"
+          name="wordBankId"
           className="rw-label"
           errorClassName="rw-label rw-label-error"
         >
-          Words bank id
+          Word bank id
         </Label>
         
-          <NumberField
-            name="wordsBankId"
-            defaultValue={props.word?.wordsBankId}
+          <TextField
+            name="wordBankId"
+            defaultValue={props.word?.wordBankId}
             className="rw-input"
             errorClassName="rw-input rw-input-error"
           />
         
 
-        <FieldError name="wordsBankId" className="rw-field-error" />
+        <FieldError name="wordBankId" className="rw-field-error" />
 
         <div className="rw-button-group">
           <Submit

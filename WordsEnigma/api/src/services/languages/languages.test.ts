@@ -30,14 +30,14 @@ describe('languages', () => {
     const result = await createLanguage({
       input: {
         name: 'String',
-        code: 'String',
-        createdAt: '2022-06-29T14:21:59Z',
+        code: 'String9523426',
+        updatedAt: '2022-07-05T23:40:41Z',
       },
     })
 
     expect(result.name).toEqual('String')
-    expect(result.code).toEqual('String')
-    expect(result.createdAt).toEqual('2022-06-29T14:21:59Z')
+    expect(result.code).toEqual('String9523426')
+    expect(result.updatedAt).toEqual('2022-07-05T23:40:41Z')
   })
 
   scenario('updates a language', async (scenario: StandardScenario) => {

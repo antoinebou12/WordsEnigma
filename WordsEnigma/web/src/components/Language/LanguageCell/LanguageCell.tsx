@@ -4,12 +4,13 @@ import type { CellSuccessProps, CellFailureProps } from '@redwoodjs/web'
 import Language from 'src/components/Language/Language'
 
 export const QUERY = gql`
-  query FindLanguageById($id: Int!) {
+  query FindLanguageById($id: String!) {
     language: language(id: $id) {
       id
       name
       code
       createdAt
+      updatedAt
     }
   }
 `

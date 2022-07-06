@@ -5,15 +5,15 @@ export const standard = defineScenario<Prisma.LanguageCreateArgs>({
     one: {
       data: {
         name: 'String',
-        code: 'String',
-        createdAt: '2022-06-29T14:21:59Z',
+        code: 'String5529454',
+        updatedAt: '2022-07-05T23:40:41Z',
       },
     },
     two: {
       data: {
         name: 'String',
-        code: 'String',
-        createdAt: '2022-06-29T14:21:59Z',
+        code: 'String4047400',
+        updatedAt: '2022-07-05T23:40:41Z',
       },
     },
   },

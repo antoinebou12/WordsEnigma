@@ -4,15 +4,19 @@ import type { CellSuccessProps, CellFailureProps } from '@redwoodjs/web'
 import Word from 'src/components/Word/Word'
 
 export const QUERY = gql`
-  query FindWordById($id: Int!) {
+  query FindWordById($id: String!) {
     word: word(id: $id) {
       id
       word
       definition
       example
+      synonym
+      size
+      source
       languageId
       createdAt
-      wordsBankId
+      updatedAt
+      wordBankId
     }
   }
 `

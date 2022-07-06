@@ -1,7 +1,7 @@
 import EditLanguageCell from 'src/components/Language/EditLanguageCell'
 
 type LanguagePageProps = {
-  id: number
+  id: string
 }
 
 const EditLanguagePage = ({ id }: LanguagePageProps) => {

@@ -7,7 +7,7 @@ import { Link, routes } from '@redwoodjs/router'
 import { QUERY } from 'src/components/Word/WordsCell'
 
 const DELETE_WORD_MUTATION = gql`
-  mutation DeleteWordMutation($id: Int!) {
+  mutation DeleteWordMutation($id: String!) {
     deleteWord(id: $id) {
       id
     }
@@ -83,9 +83,13 @@ const WordsList = ({ words }) => {
             <th>Word</th>
             <th>Definition</th>
             <th>Example</th>
+            <th>Synonym</th>
+            <th>Size</th>
+            <th>Source</th>
             <th>Language id</th>
             <th>Created at</th>
-            <th>Words bank id</th>
+            <th>Updated at</th>
+            <th>Word bank id</th>
             <th>&nbsp;</th>
           </tr>
         </thead>
@@ -96,9 +100,13 @@ const WordsList = ({ words }) => {
               <td>{truncate(word.word)}</td>
               <td>{truncate(word.definition)}</td>
               <td>{truncate(word.example)}</td>
+              <td>{truncate(word.synonym)}</td>
+              <td>{truncate(word.size)}</td>
+              <td>{truncate(word.source)}</td>
               <td>{truncate(word.languageId)}</td>
               <td>{timeTag(word.createdAt)}</td>
-              <td>{truncate(word.wordsBankId)}</td>
+              <td>{timeTag(word.updatedAt)}</td>
+              <td>{truncate(word.wordBankId)}</td>
               <td>
                 <nav className="rw-table-actions">
                   <Link
