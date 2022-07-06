@@ -4,7 +4,7 @@ import Rules from "./component/Rules";
 import Gameboard from "./component/Gameboard";
 import Keyboard from "./component/Keyboard";
 import React, { useState } from 'react'
-import { dictFr } from "./data/Dictionnaire5lettres";
+import { dictFr } from "./data/fr";
 import Modal from "./component/Modal";
 
 export const GameContext = React.createContext()
